@@ -1,4 +1,4 @@
-import { getPages, getPosts, getSettings, siteUrl } from '@/lib/api';
+import { getPages, getPosts, getSettings, siteUrl, tagSlug } from '@/lib/api';
 
 export const revalidate = 300;
 
@@ -11,5 +11,6 @@ export default async function sitemap() {
       priority: p.slug === 'home' ? 1 : 0.8,
     })),
     ...posts.filter((p) => !p.seo?.noindex).map((p) => ({ url: `${base}/news/${p.slug}`, lastModified: p.updatedAt, priority: 0.6 })),
+    ...[...new Set(posts.filter((p) => !p.seo?.noindex).flatMap((p) => (p.tags || []).map(tagSlug)))].map((t) => ({ url: `${base}/news/tag/${t}`, priority: 0.4 })),
   ];
 }

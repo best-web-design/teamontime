@@ -3,8 +3,8 @@
 const { L, LINKS, s, faq } = require('./lib');
 
 const closing = (title, body, primary, secondary) => s('cta', { eyebrow: 'PUT THE LEARNING TO WORK', title, lead: body, primary, secondary });
-const preview = (slug, kind, category, title, excerpt, status) => ({
-  slug, kind, category, title, excerpt, status, published: true, seo: { noindex: true },
+const preview = (slug, kind, category, title, excerpt, status, tags = []) => ({
+  slug, kind, category, title, excerpt, status, tags, published: true, seo: { noindex: true },
   sections: [
     s('text', { eyebrow: 'ILLUSTRATIVE PREVIEW', body: `${excerpt}\n\nThis is an illustrative preview. The full story will be published once the client evidence is approved.` }),
     closing('Have a similar challenge?', 'Tell us what is getting in the way. We’ll help define a focused next step around your team, systems and business goals.',
@@ -17,18 +17,12 @@ const seoAeo = {
   title: 'How should you structure content for SEO and AEO?',
   excerpt: 'A practical editorial approach for B2B marketing teams that need useful content, credible evidence and a clear next step.',
   status: 'Trends / Content & growth', author: '', published: true,
-  seo: { metaTitle: 'How to Structure Content for SEO and AEO | Best Web Design',
-    metaDescription: 'Answer the buyer’s question clearly, add credible evidence and guide the next step. A practical SEO and AEO content structure for B2B marketing teams.' },
-  sections: [
-    s('steps', { eyebrow: 'A REPEATABLE CONTENT PATH', style: 'card', items: [
-      { kicker: '01', title: 'Answer the question', body: 'Match the intent. Make the answer clear.' },
-      { kicker: '02', title: 'Show the evidence', body: 'Add sources, examples and your expertise.' },
-      { kicker: '03', title: 'Guide the next step', body: 'Connect the insight to a useful action.' },
-    ], note: 'Figure 1. BWD’s editorial sequence: a useful answer, credible support and a relevant next step.' }),
-    s('panels', { items: [{ eyebrow: 'THE SHORT ANSWER',
-      body: 'Start with the buyer’s question, answer it clearly, then add the evidence and context needed to act. Combine search engine optimisation (SEO) with answer engine optimisation (AEO) through useful content, descriptive headings, primary sources and practical examples. Give readers a clear next step, and measure qualified enquiries alongside visibility. Clear structure supports understanding; it does not guarantee rankings or AI citations.',
-      detail: '**For:** Established B2B marketing teams\n**Focus:** Useful answers. Credible evidence.\n**Next step:** Connect content to qualified enquiries' }] }),
-    s('richText', { html: `
+  tags: ['SEO', 'AEO', 'Content strategy', 'B2B marketing'],
+  content: `
+<h2 id="short-answer">The short answer</h2>
+<p>Start with the buyer’s question, answer it clearly, then add the evidence and context needed to act. Combine search engine optimisation (SEO) with answer engine optimisation (AEO) through useful content, descriptive headings, primary sources and practical examples. Give readers a clear next step, and measure qualified enquiries alongside visibility. Clear structure supports understanding; it does not guarantee rankings or AI citations.</p>
+<p><strong>A repeatable content path:</strong></p>
+<ol><li><strong>Answer the question</strong> — match the intent and make the answer clear.</li><li><strong>Show the evidence</strong> — add sources, examples and your expertise.</li><li><strong>Guide the next step</strong> — connect the insight to a useful action.</li></ol>
 <h2 id="intent">Which question should the article answer?</h2>
 <p><strong>Choose one specific question that matters to a buyer at a recognisable stage of their decision.</strong> A useful brief names the reader, the decision they face and the next step the article should help them take.</p>
 <p>Use sales conversations, support questions and search data to identify the language customers actually use. For an established business, “Can we connect our website to our CRM?” is more useful than a broad article about digital transformation.</p>
@@ -59,7 +53,10 @@ const seoAeo = {
 <h2 id="sources">Sources &amp; further reading</h2>
 <p>[1] Google Search Central — Generative AI search guidance. Official guidance on SEO foundations, useful content and generative search. Accessed 30 October 2026.<br>
 [2] Google Search Central — Search result snippets. How page content and meta descriptions inform search snippets. Accessed 30 October 2026.<br>
-[3] Google Search Central — Article structured data. Article metadata, including author, headline, dates and images. Accessed 30 October 2026.</p>` }),
+[3] Google Search Central — Article structured data. Article metadata, including author, headline, dates and images. Accessed 30 October 2026.</p>`,
+  seo: { metaTitle: 'How to Structure Content for SEO and AEO | Best Web Design',
+    metaDescription: 'Answer the buyer’s question clearly, add credible evidence and guide the next step. A practical SEO and AEO content structure for B2B marketing teams.' },
+  sections: [
     faq('QUESTIONS ANSWERED', 'Frequently asked questions', [
       ['What is the difference between SEO and AEO?', 'Search engine optimisation helps people discover useful content through search. Answer engine optimisation focuses on making answers clear and well supported for answer-based experiences. They overlap; Google’s generative search guidance still relies on established SEO practices. [1]'],
       ['Does AEO replace SEO?', 'No. Treat answer-focused writing as part of a broader search and content approach. Google’s guidance says standard SEO practices remain relevant to its generative search features. [1]'],
@@ -94,13 +91,13 @@ const caseTemplate = {
 
 module.exports = [
   seoAeo,
-  preview('from-interest-to-an-informed-follow-up', 'case-study', 'Case study', 'From interest to an informed follow-up.', 'An illustrative look at connecting landing pages, CRM ownership and sales feedback.', 'Illustrative case-study preview'),
-  preview('product-discovery-connected-to-a-quote', 'case-study', 'Case study', 'Product discovery, connected to a quote.', 'An example of bringing catalogue structure, useful content and sales routing into one scope.', 'Illustrative case-study preview'),
-  preview('a-booking-journey-with-fewer-gaps', 'case-study', 'Case study', 'A booking journey with fewer gaps.', 'An illustrative path from service selection to a booking and the team responsible for it.', 'Illustrative case-study preview'),
-  preview('orders-that-reach-the-right-systems', 'case-study', 'Case study', 'Orders that reach the right systems.', 'An illustrative connection between checkout, stock visibility and fulfilment.', 'Illustrative case-study preview'),
-  preview('answers-with-a-human-handover', 'case-study', 'Case study', 'Answers with a human handover.', 'An illustrative AI support workflow with approved sources and clear review points.', 'Illustrative case-study preview'),
-  preview('ai-works-better-with-a-clear-task', 'article', 'Trends', 'AI works better with a clear task.', 'Questions about data, review, permissions and cost to ask before introducing an AI workflow.', 'Editorial preview'),
-  preview('measure-the-action-after-the-scan', 'article', 'Trends', 'Measure the action after the scan.', 'Planning dynamic QR around the mobile journey, destination ownership and useful outcomes.', 'Editorial preview'),
-  preview('what-happens-after-the-enquiry-matters', 'article', 'Trends', 'What happens after the enquiry matters.', 'Connecting acquisition, conversion and follow-up around a concrete business priority.', 'Editorial preview'),
+  preview('from-interest-to-an-informed-follow-up', 'case-study', 'Case study', 'From interest to an informed follow-up.', 'An illustrative look at connecting landing pages, CRM ownership and sales feedback.', 'Illustrative case-study preview', ['CRM', 'Lead generation']),
+  preview('product-discovery-connected-to-a-quote', 'case-study', 'Case study', 'Product discovery, connected to a quote.', 'An example of bringing catalogue structure, useful content and sales routing into one scope.', 'Illustrative case-study preview', ['eCommerce', 'CRM']),
+  preview('a-booking-journey-with-fewer-gaps', 'case-study', 'Case study', 'A booking journey with fewer gaps.', 'An illustrative path from service selection to a booking and the team responsible for it.', 'Illustrative case-study preview', ['Bookings', 'UX']),
+  preview('orders-that-reach-the-right-systems', 'case-study', 'Case study', 'Orders that reach the right systems.', 'An illustrative connection between checkout, stock visibility and fulfilment.', 'Illustrative case-study preview', ['eCommerce', 'Integration']),
+  preview('answers-with-a-human-handover', 'case-study', 'Case study', 'Answers with a human handover.', 'An illustrative AI support workflow with approved sources and clear review points.', 'Illustrative case-study preview', ['AI', 'Automation']),
+  preview('ai-works-better-with-a-clear-task', 'article', 'Trends', 'AI works better with a clear task.', 'Questions about data, review, permissions and cost to ask before introducing an AI workflow.', 'Editorial preview', ['AI']),
+  preview('measure-the-action-after-the-scan', 'article', 'Trends', 'Measure the action after the scan.', 'Planning dynamic QR around the mobile journey, destination ownership and useful outcomes.', 'Editorial preview', ['Dynamic QR']),
+  preview('what-happens-after-the-enquiry-matters', 'article', 'Trends', 'What happens after the enquiry matters.', 'Connecting acquisition, conversion and follow-up around a concrete business priority.', 'Editorial preview', ['Lead generation', 'CRM']),
   caseTemplate,
 ];

@@ -16,7 +16,7 @@ const SEO_FIELDS = [
 ];
 
 // Shared editor for Pages and Posts. `kind` = 'pages' | 'posts'.
-export default function DocEditor({ kind, id, metaFields }) {
+export default function DocEditor({ kind, id, metaFields, contentFields }) {
   const router = useRouter();
   const toast = useToast();
   const [doc, setDoc] = useState(null);
@@ -38,9 +38,13 @@ export default function DocEditor({ kind, id, metaFields }) {
 
   async function save() {
     if (doc.seo?.schema) { try { JSON.parse(doc.seo.schema); } catch { return toast('Custom schema is not valid JSON', true); } }
+    // Empty slug → derive from title so authors don't have to think about URLs.
+    const body = doc.slug ? doc : { ...doc, slug: doc.title.toLowerCase().normalize('NFKD').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') };
+    if (!body.title || !body.slug) return toast('Title is required', true);
     setBusy(true);
     try {
-      const saved = await api(`/api/admin/${kind}${isNew ? '' : `/${id}`}`, { method: isNew ? 'POST' : 'PUT', body: doc });
+      const saved = await api(`/api/admin/${kind}${isNew ? '' : `/${id}`}`, { method: isNew ? 'POST' : 'PUT', body });
+      setDoc(saved);
       toast('Saved');
       if (isNew) router.replace(`/admin/${kind === 'pages' ? 'pages' : 'news'}/${saved._id}`);
     } catch (e) { toast(e.message, true); }
@@ -72,7 +76,7 @@ export default function DocEditor({ kind, id, metaFields }) {
         <div className="adm-box">
           <Fields fields={[
             { name: 'title', type: 'text', help: 'Internal name and default <title>' },
-            { name: 'slug', type: 'text', help: kind === 'pages' ? 'URL path without leading slash, e.g. services/websites. Home = home' : 'URL: /news/<slug>' },
+            { name: 'slug', type: 'text', help: kind === 'pages' ? 'URL path without leading slash, e.g. services/websites. Home = home' : 'URL: /news/<slug>. Leave empty to create it from the title.' },
             ...metaFields,
             { name: 'published', type: 'bool', label: 'Published' },
           ]} value={doc} onChange={setDoc} />
@@ -88,6 +92,10 @@ export default function DocEditor({ kind, id, metaFields }) {
 
       {tab === 'content' && (
         <>
+          {contentFields && (
+            <div className="adm-box"><Fields fields={[{ name: 'title', type: 'text', label: 'Title (H1)' }, ...contentFields]} value={doc} onChange={setDoc} /></div>
+          )}
+          {contentFields && <p className="adm-count">Extra sections below the content (optional): FAQs, call to action, images…</p>}
           {sections.map((s, i) => {
             const def = SECTION_TYPES[s.type];
             const preview = s.data?.title || s.data?.eyebrow || '';

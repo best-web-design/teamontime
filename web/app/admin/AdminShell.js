@@ -8,7 +8,7 @@ const ToastCtx = createContext(() => {});
 export const useToast = () => useContext(ToastCtx);
 
 const NAV = [
-  ['/admin', 'Dashboard'], ['/admin/pages', 'Pages'], ['/admin/news', 'News & case studies'],
+  ['/admin', 'Dashboard'], ['/admin/pages', 'Pages'], ['/admin/news', 'Blog / News'],
   ['/admin/submissions', 'Form submissions'], ['/admin/settings', 'Site & SEO settings'],
 ];
 

@@ -49,7 +49,7 @@ app.get('/api/posts', wrap(async (req, res) => {
   const q = { published: true };
   if (req.query.kind) q.kind = String(req.query.kind);
   if (req.query.category) q.category = String(req.query.category);
-  res.json(await Post.find(q).select('-sections').sort('-publishedAt').lean());
+  res.json(await Post.find(q).select('-sections -content').sort('-publishedAt').lean());
 }));
 app.get('/api/posts/:slug', wrap(async (req, res) => {
   const post = await Post.findOne({ slug: req.params.slug, published: true }).lean();
@@ -126,7 +126,7 @@ admin.use(auth);
 
 const pick = (body, keys) => Object.fromEntries(keys.filter((k) => k in body).map((k) => [k, body[k]]));
 function crud(name, Model, fields) {
-  admin.get(`/${name}`, wrap(async (req, res) => res.json(await Model.find().select('-sections').sort(Model === Page ? 'order' : '-publishedAt').lean())));
+  admin.get(`/${name}`, wrap(async (req, res) => res.json(await Model.find().select('-sections -content').sort(Model === Page ? 'order' : '-publishedAt').lean())));
   admin.get(`/${name}/:id`, wrap(async (req, res) => {
     const doc = await Model.findById(req.params.id).lean();
     doc ? res.json(doc) : res.status(404).json({ error: 'Not found' });
@@ -140,7 +140,7 @@ function crud(name, Model, fields) {
   admin.delete(`/${name}/:id`, wrap(async (req, res) => { await Model.findByIdAndDelete(req.params.id); revalidate(); res.json({ ok: true }); }));
 }
 crud('pages', Page, ['slug', 'title', 'template', 'sections', 'seo', 'published', 'order']);
-crud('posts', Post, ['slug', 'kind', 'category', 'title', 'excerpt', 'status', 'cover', 'author', 'sections', 'seo', 'published', 'publishedAt']);
+crud('posts', Post, ['slug', 'kind', 'category', 'title', 'excerpt', 'status', 'cover', 'coverAlt', 'author', 'tags', 'content', 'sections', 'seo', 'published', 'publishedAt']);
 
 admin.get('/settings', wrap(async (req, res) => res.json(await getSettings())));
 admin.put('/settings', wrap(async (req, res) => {

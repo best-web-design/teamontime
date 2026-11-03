@@ -34,3 +34,9 @@
 .adm-login { min-height: 100vh; display: grid; place-items: center; }
 .adm-login form { width: min(380px, 92vw); }
 @media (max-width: 800px) { .adm { grid-template-columns: 1fr; } .adm-side { position: static; height: auto; flex-direction: row; flex-wrap: wrap; } .adm-main { padding: 20px; } }
+
+.rte { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+.rte-bar { background: var(--ink); padding: 8px; gap: 6px; border-bottom: 1px solid var(--border); }
+.rte-bar .abtn { padding: 4px 10px; font-size: 13px; }
+.rte-area { min-height: 320px; padding: 16px 20px; background: var(--bg); outline: none; max-width: none; color: var(--text); }
+.rte-area img { max-width: 100%; border-radius: 12px; }

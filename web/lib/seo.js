@@ -16,7 +16,10 @@ export function buildMetadata(doc, settings, path) {
     description,
     alternates: { canonical },
     robots: seo.noindex ? { index: false, follow: true } : undefined,
-    openGraph: { title, description, url: canonical, images: image ? [image] : undefined, type: doc.kind ? 'article' : 'website' },
+    openGraph: {
+      title, description, url: canonical, images: image ? [{ url: image, alt: doc.coverAlt || title }] : undefined,
+      ...(doc.kind ? { type: 'article', publishedTime: doc.publishedAt, modifiedTime: doc.updatedAt, authors: doc.author ? [doc.author] : undefined, tags: doc.tags, section: doc.category } : { type: 'website' }),
+    },
     twitter: { title, description, images: image ? [image] : undefined },
   };
 }
@@ -46,7 +49,8 @@ export function buildJsonLd(doc, settings, path, { isPost } = {}) {
   if (isPost) {
     out.push({
       '@context': 'https://schema.org', '@type': doc.kind === 'case-study' ? 'Article' : 'BlogPosting',
-      headline: doc.title, description: doc.excerpt, image: doc.cover, url,
+      headline: doc.title, description: doc.seo?.metaDescription || doc.excerpt, image: doc.cover || undefined, url,
+      mainEntityOfPage: url, keywords: doc.tags?.length ? doc.tags.join(', ') : undefined, articleSection: doc.category || undefined,
       datePublished: doc.publishedAt, dateModified: doc.updatedAt,
       author: doc.author ? { '@type': 'Person', name: doc.author } : org, publisher: org,
     });

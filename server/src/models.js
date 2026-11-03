@@ -29,10 +29,13 @@ const Post = model('Post', new Schema({
   kind: { type: String, enum: ['case-study', 'article'], default: 'article' },
   category: String,
   title: { type: String, required: true },
-  excerpt: String,
+  excerpt: String, // short description: cards, listing, default meta description
   status: String,
   cover: String,
+  coverAlt: String,
   author: String,
+  tags: { type: [String], index: true },
+  content: String, // main article body (HTML from the admin editor)
   sections: [Section],
   seo: Seo,
   published: { type: Boolean, default: true },

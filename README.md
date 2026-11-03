@@ -16,7 +16,11 @@ web/      Next.js site (public pages + /admin panel)
 - **SEO per page** — meta title, description, canonical, social image, noindex, custom JSON-LD.
   Generated automatically when empty: Organization + WebSite (home), Service (service pages),
   FAQPage (from FAQ sections), BreadcrumbList, Article/BlogPosting (news).
-- **News & case studies** — posts with category, cover, excerpt, author, sections and SEO.
+- **Blog / News** — title, slug (auto from title), short description, featured image + alt text,
+  rich-text content (headings, lists, links, quotes, inline images, HTML mode), category, tags, author,
+  publish date, optional extra sections, and per-post SEO (meta title/description, canonical, social image,
+  noindex, custom schema). Front end: `/news`, `/news/<slug>` (BlogPosting schema, article:* Open Graph,
+  reading time, related posts by tag) and `/news/tag/<tag>` archive pages (in the sitemap).
 - **Site & SEO settings** — site name/URL, logos, favicon, contact details, WhatsApp button,
   title template, default description/OG image, Google/Bing verification, GA4/GTM,
   Organization schema, **robots.txt**, **llms.txt**, header menu, mega menu, footer.

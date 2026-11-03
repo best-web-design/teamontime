@@ -12,6 +12,7 @@ export const getSettings = async () => (await get('/api/settings')) || {};
 export const getPage = (slug) => get(`/api/page?slug=${encodeURIComponent(slug)}`);
 export const getPages = async () => (await get('/api/pages')) || [];
 export const getPosts = async (kind) => (await get(`/api/posts${kind ? `?kind=${kind}` : ''}`)) || [];
+export const tagSlug = (t) => encodeURIComponent(String(t).trim().toLowerCase().replace(/\s+/g, '-'));
 export const getPost = (slug) => get(`/api/posts/${encodeURIComponent(slug)}`);
 
 export const siteUrl = (s) => (s.siteUrl || process.env.SITE_URL || 'http://localhost:3000').replace(/\/$/, '');
