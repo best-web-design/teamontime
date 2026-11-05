@@ -1,6 +1,6 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
-import { uploadImage } from '@/lib/admin';
+import { api, uploadImage } from '@/lib/admin';
 import { useToast } from './AdminShell';
 
 const nice = (n) => n.replace(/([A-Z])/g, ' $1').replace(/^\w/, (c) => c.toUpperCase());
@@ -82,6 +82,11 @@ function ListField({ f, label, value, onChange }) {
 export function ImageInput({ value, onChange }) {
   const toast = useToast();
   const [busy, setBusy] = useState(false);
+  const [library, setLibrary] = useState(null);
+  async function openLibrary() {
+    if (library) return setLibrary(null);
+    try { setLibrary(await api('/api/admin/media')); } catch (err) { toast(err.message, true); }
+  }
   async function pick(e) {
     const file = e.target.files?.[0];
     if (!file) return;
@@ -98,8 +103,20 @@ export function ImageInput({ value, onChange }) {
         <div className="adm-row">
           <input type="file" accept="image/*" onChange={pick} disabled={busy} style={{ width: 'auto' }} />
           {busy && <span className="adm-count">Uploading…</span>}
+          <button type="button" className="abtn" onClick={openLibrary} aria-expanded={!!library}>Choose from library</button>
           {value && <button type="button" className="abtn dang" onClick={() => onChange('')}>Clear</button>}
         </div>
+        {library && (
+          library.length ? (
+            <div className="adm-pick">
+              {library.map((m) => (
+                <button type="button" key={m.name} title={m.name} onClick={() => { onChange(m.url); setLibrary(null); }}>
+                  <img src={m.url} alt={m.name} loading="lazy" />
+                </button>
+              ))}
+            </div>
+          ) : <span className="adm-count">The library is empty. Upload an image first.</span>
+        )}
       </div>
     </div>
   );

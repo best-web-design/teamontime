@@ -15,5 +15,10 @@ test('form and admin guards', async () => {
     assert.equal((await post('/api/forms/contact', { company_website: 'bot' })).status, 200); // honeypot swallowed
     assert.equal((await fetch(base + '/api/admin/pages')).status, 401);
     assert.equal((await fetch(base + '/api/admin/pages', { headers: { Authorization: 'Bearer forged' } })).status, 401);
+    assert.equal((await fetch(base + '/api/admin/media/x.png', { method: 'DELETE' })).status, 401);
+    // a valid admin cannot delete outside the uploads folder
+    const auth = { Authorization: `Bearer ${require('jsonwebtoken').sign({ sub: '1' }, process.env.JWT_SECRET)}` };
+    assert.equal((await fetch(base + '/api/admin/media/..%2Fpackage.json', { method: 'DELETE', headers: auth })).status, 404);
+    assert.ok(require('fs').existsSync(require('path').join(__dirname, '..', '..', 'package.json')));
   } finally { srv.close(); }
 });

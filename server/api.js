@@ -144,8 +144,15 @@ admin.post('/upload', upload.single('file'), (req, res) => {
 });
 admin.get('/media', wrap(async (req, res) => {
   const files = fs.readdirSync(UPLOAD_DIR).filter((f) => !f.startsWith('.')).sort().reverse();
-  res.json(files.map((f) => ({ name: f, url: `/uploads/${f}` })));
+  res.json(files.map((f) => ({ name: f, url: `/uploads/${f}`, size: fs.statSync(path.join(UPLOAD_DIR, f)).size })));
 }));
+admin.delete('/media/:name', (req, res) => {
+  const name = path.basename(req.params.name); // no path traversal out of uploads
+  const file = path.join(UPLOAD_DIR, name);
+  if (name.startsWith('.') || !fs.existsSync(file)) return res.status(404).json({ error: 'Not found' });
+  fs.unlinkSync(file);
+  res.json({ ok: true });
+});
 
 app.use('/api/admin', admin);
 
