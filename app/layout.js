@@ -9,6 +9,8 @@ import './globals.css';
 import { getSettings, siteUrl } from '@/lib/api';
 
 
+export const dynamic = 'force-dynamic'; // every page reads live CMS data from MySQL
+
 export async function generateMetadata() {
   const s = await getSettings();
   const seo = s.seo || {};
@@ -19,6 +21,7 @@ export async function generateMetadata() {
     openGraph: { siteName: s.siteName, type: 'website', images: seo.ogImage ? [seo.ogImage] : undefined, locale: seo.locale || 'en_ZA' },
     twitter: { card: 'summary_large_image', site: seo.twitter || undefined },
     icons: s.favicon ? { icon: s.favicon } : undefined,
+    robots: process.env.SITE_NOINDEX === '1' ? { index: false, follow: false } : undefined,
     verification: { google: seo.googleVerification || undefined, other: seo.bingVerification ? { 'msvalidate.01': seo.bingVerification } : undefined },
   };
 }

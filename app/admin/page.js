@@ -2,6 +2,26 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { api } from '@/lib/admin';
+import { useToast } from './AdminShell';
+
+function ChangePassword() {
+  const toast = useToast();
+  async function submit(e) {
+    e.preventDefault();
+    const f = new FormData(e.currentTarget);
+    if (f.get('password') !== f.get('confirm')) return toast('Passwords do not match', true);
+    try { await api('/api/admin/password', { method: 'PUT', body: { password: f.get('password') } }); toast('Password changed'); e.target.reset(); }
+    catch (err) { toast(err.message, true); }
+  }
+  return (
+    <form className="adm-box" onSubmit={submit} style={{ maxWidth: 420, marginTop: 24 }}>
+      <h2>Change password</h2>
+      <label className="adm-f"><span>New password (10+ characters)</span><input name="password" type="password" minLength={10} required autoComplete="new-password" /></label>
+      <label className="adm-f"><span>Confirm new password</span><input name="confirm" type="password" minLength={10} required autoComplete="new-password" /></label>
+      <div><button className="abtn pri">Update password</button></div>
+    </form>
+  );
+}
 
 export default function Dashboard() {
   const [n, setN] = useState({});
@@ -23,6 +43,7 @@ export default function Dashboard() {
           </Link>
         ))}
       </div>
+      <ChangePassword />
     </>
   );
 }

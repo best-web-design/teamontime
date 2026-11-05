@@ -1,11 +1,13 @@
 # Best Web Design — website + CMS
 
-Next.js (server-rendered, SEO) + Express API + MongoDB (Atlas). Built from the Figma file
-"BWD Website Services — Agency9" (21 desktop pages).
+Next.js (server-rendered, SEO) + Express API + MySQL, running as **one Node.js app**
+(`server.js` serves `/api` and `/uploads`, Next.js renders everything else).
+Built from the Figma file "BWD Website Services — Agency9" (21 desktop pages).
 
 ```
-server/   Express API, Mongoose models, admin auth, uploads, forms, seed content
-web/      Next.js site (public pages + /admin panel)
+app/ components/ lib/   Next.js site + /admin panel
+server/                 API (api.js), MySQL store (db.js), seed script + Figma content (seed-data/)
+server.js               startup file: creates tables, seeds content + admin on first run, starts the site
 ```
 
 ## What is editable in /admin
@@ -27,34 +29,28 @@ web/      Next.js site (public pages + /admin panel)
 - **Form submissions** — Contact, Free Audit (3-step) and Newsletter; view, mark read, export CSV.
   Optional email notification via SMTP.
 
-`/sitemap.xml`, `/robots.txt` and `/llms.txt` are served live from the database. Saving in admin
-refreshes the public site immediately (on-demand revalidation).
+`/sitemap.xml`, `/robots.txt` and `/llms.txt` are served live from the database; admin changes show
+on the site immediately.
 
 ## Run locally
 
-1. Create a free MongoDB Atlas cluster and copy the connection string.
-2. API:
-   ```
-   cd server && cp .env.example .env   # fill MONGODB_URI, JWT_SECRET, ADMIN_EMAIL, ADMIN_PASSWORD
-   npm install
-   npm run seed                          # loads all Figma content + creates the admin user
-   npm run dev                           # http://localhost:4000
-   ```
-3. Website:
-   ```
-   cd web && cp .env.example .env        # API_URL=NEXT_PUBLIC_API_URL=http://localhost:4000
-   npm install && npm run dev            # http://localhost:3000, admin at /admin
-   ```
-`npm run seed -- --force` overwrites seeded pages with the original content (it never deletes).
+1. Create a MySQL/MariaDB database and user.
+2. `cp .env.example .env` and fill `DB_*`, `JWT_SECRET`, `ADMIN_EMAIL`, `ADMIN_PASSWORD`.
+3. `npm install`, then `npm run dev` → http://localhost:3000 (admin at `/admin`).
 
-## Deploy
+Tables are created and the Figma content is loaded automatically on first start.
+`npm run seed -- --force` restores the original seeded pages (never deletes anything).
+Tests: `npm test` (DB test runs when `TEST_DB_NAME` is set).
 
-The API must be reachable while `next build` runs (pages are pre-rendered from it).
+## Deploy on HostAfrica (DirectAdmin → Setup Node.js App)
 
-- **VPS**: run both with PM2 behind Nginx (`api.` subdomain → :4000, main domain → :3000), HTTPS via Certbot.
-- **cPanel with "Setup Node.js App"**: create two Node apps (server: `src/index.js`, web: `npm run start`).
-- **Vercel + Render**: web on Vercel, server on Render. Uploads on Render need a persistent disk
-  (set `UPLOAD_DIR`) — or use an image CDN.
+1. `npm run build` locally (shared hosting has too little memory to build).
+2. Upload everything except `node_modules` (including `.next/` and a production `.env`) to an
+   app folder outside `public_html`, e.g. `/home/<user>/nodebwd_app`.
+3. Setup Node.js App → Create: Node 20+, mode Production, application root `nodebwd_app`,
+   URL = the (sub)domain, startup file `server.js`. Then **Run NPM Install** and **Restart**.
+4. Remove the default `index.html` from the domain's `public_html` so it doesn't shadow the app.
+5. Issue SSL for the domain (DirectAdmin → SSL Certificates).
 
 ## Before launch
 

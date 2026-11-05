@@ -2,7 +2,6 @@
 import { useState } from 'react';
 import { Lines } from './Text';
 
-const API = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000';
 
 // Field sets follow Figma P13 Contact, P14 Free Audit (3 steps) and the P11 newsletter.
 const ENGAGEMENT = ['Scoped project', 'Digital Growth Partnership', 'Free audit first', 'Not sure yet'];
@@ -92,7 +91,7 @@ export default function CmsForm({ form = 'contact', submitLabel, privacy, succes
     setState({ status: 'sending', error: '' });
     try {
       const hp = e.currentTarget.elements.company_website?.value;
-      const res = await fetch(`${API}/api/forms/${form}`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ...values, company_website: hp }) });
+      const res = await fetch(`/api/forms/${form}`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ...values, company_website: hp }) });
       const json = await res.json().catch(() => ({}));
       if (!res.ok) throw new Error(json.error || 'Something went wrong. Please try again.');
       setState({ status: 'done', error: '' });

@@ -1,6 +1,6 @@
 import { getPages, getPosts, getSettings, siteUrl } from '@/lib/api';
 
-export const revalidate = 300;
+export const dynamic = 'force-dynamic';
 
 // Edited in Admin → SEO settings → llms.txt. Empty = generated from published pages and news.
 export async function GET() {

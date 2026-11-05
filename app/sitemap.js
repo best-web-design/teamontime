@@ -1,6 +1,6 @@
 import { getPages, getPosts, getSettings, siteUrl, tagSlug } from '@/lib/api';
 
-export const revalidate = 300;
+export const dynamic = 'force-dynamic';
 
 export default async function sitemap() {
   const [s, pages, posts] = await Promise.all([getSettings(), getPages(), getPosts()]);

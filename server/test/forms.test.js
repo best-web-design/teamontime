@@ -2,7 +2,7 @@
 process.env.JWT_SECRET = 'x'.repeat(40);
 const test = require('node:test');
 const assert = require('node:assert');
-const app = require('../src/app');
+const app = require('../api');
 
 test('form and admin guards', async () => {
   const srv = app.listen(0);
