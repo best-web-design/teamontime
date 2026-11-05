@@ -22,10 +22,8 @@ export default function Integrations({ items, help }) {
       <div className="grid-3">
         {shown.map((it, i) => (
           <article className="step" key={i} style={{ minHeight: 0 }}>
-            <div className="adm-row" style={{ display: 'flex', justifyContent: 'space-between', gap: 12 }}>
-              <p className="label">{it.code}</p>
-              {it.logo && <img src={it.logo} alt="" width="40" height="40" style={{ borderRadius: 8, objectFit: 'contain' }} loading="lazy" />}
-            </div>
+            <p className="label">{it.code}</p>
+            <TechLogos logos={it.logos?.length ? it.logos : it.logo ? [{ image: it.logo, alt: '' }] : []} />
             <h3 className="h3">{it.title}</h3>
             {it.platforms && <p className="action" style={{ margin: 0, color: 'var(--text)' }}>{it.platforms}</p>}
             {it.outcome && <p className="body">{it.outcome}</p>}
@@ -34,6 +32,21 @@ export default function Integrations({ items, help }) {
           </article>
         ))}
       </div>
+    </div>
+  );
+}
+
+function TechLogos({ logos }) {
+  const shown = logos.filter((l) => l.image);
+  if (!shown.length) return null;
+  return (
+    <div className="tech-logos">
+      {shown.map((l, i) => (
+        <span key={i} className="tech-logos-item">
+          {i > 0 && <span aria-hidden="true">+</span>}
+          <img src={l.image} alt={l.alt || ''} width="96" height="60" loading="lazy" />
+        </span>
+      ))}
     </div>
   );
 }

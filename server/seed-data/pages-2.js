@@ -204,7 +204,18 @@ const news = {
   ],
 };
 
-const IC = (code, title, outcome, platforms, fit, measure, disciplines) => ({ code, title, outcome, platforms, fit: `Best for: ${fit}`, measure: `Measure: ${measure}`, disciplines, logo: '' });
+// Integration logo masters from Figma (Components / 06 Integration logos), saved in public/assets/figma.
+const TECH = [['Figma', 'figma'], ['Storybook', 'storybook'], ['Maze', 'maze'], ['Microsoft Clarity', 'microsoft-clarity'], ['Google Analytics', 'google-analytics'],
+  ['Typeform', 'typeform'], ['HubSpot', 'hubspot'], ['Website', 'website'], ['NightsBridge', 'nightsbridge'], ['WordPress', 'wordpress'], ['SimplyBook.me', 'simplybook'],
+  ['WooCommerce', 'woocommerce'], ['Payfast', 'payfast'], ['Ozow', 'ozow'], ['Mobicred', 'mobicred'], ['Shopify', 'shopify'], ['Bob Go', 'bob-go'], ['Xero', 'xero'],
+  ['CRM', 'crm'], ['monday.com', 'monday'], ['n8n', 'n8n'], ['OpenAI', 'openai'], ['Claude', 'claude'], ['SharePoint', 'sharepoint'], ['Power Automate', 'power-automate'],
+  ['Auth0', 'auth0'], ['Dynamic QR', 'dynamic-qr'], ['Cue', 'cue'], ['WhatsApp', 'whatsapp'], ['Brevo', 'brevo'], ['Omnisend', 'omnisend'],
+  ['Merchant Center', 'merchant-center'], ['Meta', 'meta'], ['Google Ads', 'google-ads'], ['Google Data Studio', 'google-data-studio']];
+const ALIAS = { ga4: 'google-analytics', 'meta conversions api': 'meta' };
+const techFile = (name) => ALIAS[name.toLowerCase()] || TECH.find(([n]) => n.toLowerCase() === name.toLowerCase())?.[1];
+const techLogos = (platforms) => platforms.split(/\s*[+/]\s*/).map((name) => ({ name, file: techFile(name) }))
+  .filter((t) => t.file).map((t) => ({ image: `/assets/figma/int-${t.file}.png`, alt: t.name }));
+const IC = (code, title, outcome, platforms, fit, measure, disciplines) => ({ code, title, outcome, platforms, fit: `Best for: ${fit}`, measure: `Measure: ${measure}`, disciplines, logos: techLogos(platforms) });
 const integrations = {
   slug: 'integrations', title: 'Integrations', order: 31,
   seo: seo('Integrations: CRM, Payments, Booking & AI | Best Web Design', 'Connect HubSpot, WooCommerce, Payfast, Ozow, NightsBridge, Xero, Bob Go, n8n and more around one customer journey. 24 integration examples.'),
@@ -218,7 +229,7 @@ const integrations = {
       items: [['01', 'Design', 'Make the journey clear.'], ['02', 'Development', 'Build the experience.'], ['03', 'Integration', 'Connect data and actions.'], ['04', 'Growth Marketing', 'Measure and improve.']]
         .map(([kicker, title, body]) => ({ kicker, title, body })),
       cta: L('Explore systems integration', LINKS.systems) }),
-    s('logos', { eyebrow: 'TECHNOLOGIES', title: 'Experienced integration.', style: 'grid', items: [] }),
+    s('logos', { eyebrow: 'TECHNOLOGIES', title: 'Experienced integration.', style: 'grid', items: TECH.map(([label, f]) => ({ label, image: `/assets/figma/int-${f}.png` })) }),
     s('integrations', { anchor: 'catalogue', eyebrow: 'EXPLORE POSSIBILITIES', title: 'Find the connections\nyour business needs.',
       intro: 'Browse integration examples for established marketing and operations teams. We scope the right combination around your existing systems, customer journey and priorities.',
       filterHelp: 'Choose a discipline below. Some integrations support more than one, so they appear in multiple filters.',

@@ -11,13 +11,13 @@ const services = [
 module.exports = {
   siteName: 'Best Web Design',
   siteUrl: 'https://bestwebdesign.co.za',
-  logo: '', // export BWD_Favicon-Registered from Figma, then upload in Admin → Settings
-  logoFooter: '', // export BWD / Brand logo from Figma
+  logo: '/assets/figma/logo-mark.png',
+  logoFooter: '/assets/figma/logo-footer.png',
   favicon: '',
   notifyEmail: '',
   areaServed: 'ZA',
   contact: { phone: '+27 10 753 2316', email: 'info@bestwebdesign.co.za', address: '23 Mulbarton, Robindale\nRandburg, Gauteng, 2194\nSouth Africa' },
-  whatsapp: { number: '', label: 'WhatsApp support' },
+  whatsapp: { number: '', label: 'Chat with support' },
   socials: [],
   seo: {
     titleTemplate: '%s | Best Web Design',

@@ -3,8 +3,8 @@
 const { L, LINKS, s, faq } = require('./lib');
 
 const closing = (title, body, primary, secondary) => s('cta', { eyebrow: 'PUT THE LEARNING TO WORK', title, lead: body, primary, secondary });
-const preview = (slug, kind, category, title, excerpt, status, tags = []) => ({
-  slug, kind, category, title, excerpt, status, tags, published: true, seo: { noindex: true },
+const preview = (slug, kind, category, title, excerpt, status, tags = [], extra = {}) => ({
+  ...extra, slug, kind, category, title, excerpt, status, tags, published: true, seo: { noindex: true },
   sections: [
     s('text', { eyebrow: 'ILLUSTRATIVE PREVIEW', body: `${excerpt}\n\nThis is an illustrative preview. The full story will be published once the client evidence is approved.` }),
     closing('Have a similar challenge?', 'Tell us what is getting in the way. We’ll help define a focused next step around your team, systems and business goals.',
@@ -17,6 +17,7 @@ const seoAeo = {
   title: 'How should you structure content for SEO and AEO?',
   excerpt: 'A practical editorial approach for B2B marketing teams that need useful content, credible evidence and a clear next step.',
   status: 'Trends / Content & growth', author: '', published: true,
+  cover: '/assets/figma/case-quote.jpg', coverAlt: 'Best Web Design enamel pins on a denim jacket',
   tags: ['SEO', 'AEO', 'Content strategy', 'B2B marketing'],
   content: `
 <h2 id="short-answer">The short answer</h2>
@@ -91,13 +92,13 @@ const caseTemplate = {
 
 module.exports = [
   seoAeo,
-  preview('from-interest-to-an-informed-follow-up', 'case-study', 'Case study', 'From interest to an informed follow-up.', 'An illustrative look at connecting landing pages, CRM ownership and sales feedback.', 'Illustrative case-study preview', ['CRM', 'Lead generation']),
-  preview('product-discovery-connected-to-a-quote', 'case-study', 'Case study', 'Product discovery, connected to a quote.', 'An example of bringing catalogue structure, useful content and sales routing into one scope.', 'Illustrative case-study preview', ['eCommerce', 'CRM']),
-  preview('a-booking-journey-with-fewer-gaps', 'case-study', 'Case study', 'A booking journey with fewer gaps.', 'An illustrative path from service selection to a booking and the team responsible for it.', 'Illustrative case-study preview', ['Bookings', 'UX']),
-  preview('orders-that-reach-the-right-systems', 'case-study', 'Case study', 'Orders that reach the right systems.', 'An illustrative connection between checkout, stock visibility and fulfilment.', 'Illustrative case-study preview', ['eCommerce', 'Integration']),
-  preview('answers-with-a-human-handover', 'case-study', 'Case study', 'Answers with a human handover.', 'An illustrative AI support workflow with approved sources and clear review points.', 'Illustrative case-study preview', ['AI', 'Automation']),
-  preview('ai-works-better-with-a-clear-task', 'article', 'Trends', 'AI works better with a clear task.', 'Questions about data, review, permissions and cost to ask before introducing an AI workflow.', 'Editorial preview', ['AI']),
-  preview('measure-the-action-after-the-scan', 'article', 'Trends', 'Measure the action after the scan.', 'Planning dynamic QR around the mobile journey, destination ownership and useful outcomes.', 'Editorial preview', ['Dynamic QR']),
-  preview('what-happens-after-the-enquiry-matters', 'article', 'Trends', 'What happens after the enquiry matters.', 'Connecting acquisition, conversion and follow-up around a concrete business priority.', 'Editorial preview', ['Lead generation', 'CRM']),
+  preview('from-interest-to-an-informed-follow-up', 'case-study', 'Case study', 'From interest to an informed follow-up.', 'An illustrative look at connecting landing pages, CRM ownership and sales feedback.', 'Illustrative case-study preview', ['CRM', 'Lead generation'], { cover: '/assets/figma/case-follow-up.jpg', coverAlt: 'A hand holding a printed book' }),
+  preview('product-discovery-connected-to-a-quote', 'case-study', 'Case study', 'Product discovery, connected to a quote.', 'An example of bringing catalogue structure, useful content and sales routing into one scope.', 'Illustrative case-study preview', ['eCommerce', 'CRM'], { cover: '/assets/figma/case-quote.jpg', coverAlt: 'Best Web Design enamel pins on a denim jacket' }),
+  preview('a-booking-journey-with-fewer-gaps', 'case-study', 'Case study', 'A booking journey with fewer gaps.', 'An illustrative path from service selection to a booking and the team responsible for it.', 'Illustrative case-study preview', ['Bookings', 'UX'], { cover: '/assets/figma/case-booking.jpg', coverAlt: 'Best Web Design enamel pins on a denim jacket' }),
+  preview('orders-that-reach-the-right-systems', 'case-study', 'Case study', 'Orders that reach the right systems.', 'An illustrative connection between checkout, stock visibility and fulfilment.', 'Illustrative case-study preview', ['eCommerce', 'Integration'], { cover: '/assets/figma/case-quote.jpg', coverAlt: 'Best Web Design enamel pins on a denim jacket' }),
+  preview('answers-with-a-human-handover', 'case-study', 'Case study', 'Answers with a human handover.', 'An illustrative AI support workflow with approved sources and clear review points.', 'Illustrative case-study preview', ['AI', 'Automation'], { cover: '/assets/figma/case-follow-up.jpg', coverAlt: 'A hand holding a printed book' }),
+  preview('ai-works-better-with-a-clear-task', 'article', 'Trends', 'AI works better with a clear task.', 'Questions about data, review, permissions and cost to ask before introducing an AI workflow.', 'Editorial preview', ['AI'], { cover: '/assets/figma/case-quote.jpg', coverAlt: 'Best Web Design enamel pins on a denim jacket' }),
+  preview('measure-the-action-after-the-scan', 'article', 'Trends', 'Measure the action after the scan.', 'Planning dynamic QR around the mobile journey, destination ownership and useful outcomes.', 'Editorial preview', ['Dynamic QR'], { cover: '/assets/figma/case-quote.jpg', coverAlt: 'Best Web Design enamel pins on a denim jacket' }),
+  preview('what-happens-after-the-enquiry-matters', 'article', 'Trends', 'What happens after the enquiry matters.', 'Connecting acquisition, conversion and follow-up around a concrete business priority.', 'Editorial preview', ['Lead generation', 'CRM'], { cover: '/assets/figma/case-quote.jpg', coverAlt: 'Best Web Design enamel pins on a denim jacket' }),
   caseTemplate,
 ];

@@ -56,7 +56,7 @@ a { color: inherit; }
 .header-wrap { padding: 32px var(--gutter) 0; max-width: 1440px; margin: 0 auto; position: relative; z-index: 20; }
 .nav { background: var(--panel); border: 1px solid var(--border); border-radius: 999px; height: 90px; display: flex; align-items: center;
   gap: 40px; padding: 16px 16px 16px 40px; }
-.nav-logo { width: 51px; height: 55px; flex: none; }
+.nav-logo { width: auto; height: 55px; flex: none; display: block; }
 .nav-links { display: flex; gap: 24px; flex: 1; justify-content: center; list-style: none; margin: 0; padding: 0; }
 .nav-links a, .nav-links button { font: 600 16px/24px var(--body); color: var(--text); text-decoration: none; background: none; border: 0; cursor: pointer; padding: 0; }
 .nav-links a:hover, .nav-links button:hover { color: var(--accent); }
@@ -167,11 +167,15 @@ a { color: inherit; }
 .footer ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; }
 .footer li, .footer a { font: 400 14px/22px var(--body); color: var(--text); text-decoration: none; }
 .footer a:hover { color: var(--accent); }
-.footer-logo { width: 176px; height: auto; }
+.footer-logo { width: 174px; height: auto; display: block; }
 .footer-legal { display: flex; gap: 80px; flex-wrap: wrap; }
 
-.whatsapp { position: fixed; right: 24px; bottom: 24px; z-index: 30; background: #25d366; color: #0b1a10; border-radius: 999px; padding: 14px 22px;
-  font: 600 16px/24px var(--body); text-decoration: none; box-shadow: 0 8px 24px rgba(0,0,0,.35); }
+.whatsapp { position: fixed; right: 24px; bottom: 24px; z-index: 30; display: flex; align-items: center; gap: 12px; padding: 12px 24px 12px 16px;
+  background: linear-gradient(135deg, #4ee8a8, #b9f3dc); color: #0c0d1a; border-radius: 24px; text-decoration: none;
+  box-shadow: 0 8px 24px rgba(0,0,0,.35); font: 600 16px/22px var(--body); }
+.whatsapp svg { width: 32px; height: 32px; flex: none; }
+.whatsapp small { display: block; font-weight: 700; font-size: 15px; }
+.whatsapp:hover { filter: brightness(1.05); }
 
 
 /* Card extras */
@@ -182,8 +186,10 @@ a { color: inherit; }
 
 /* Logos (client marquee + technologies) */
 .marquee { overflow: hidden; mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); }
-.marquee-track { display: flex; gap: 64px; width: max-content; animation: marquee 40s linear infinite; }
-.marquee-track > * { display: flex; gap: 64px; }
+.marquee-track { display: flex; gap: 20px; width: max-content; animation: marquee 40s linear infinite; }
+.marquee-track > * { display: flex; gap: 20px; }
+.marquee .logo-item { width: 280px; height: 160px; justify-content: center; background: var(--ink); border-radius: var(--r24); padding: 24px; box-sizing: border-box; }
+.marquee .logo-item img { max-width: 100%; max-height: 76px; height: auto; }
 .marquee:hover .marquee-track { animation-play-state: paused; }
 @keyframes marquee { to { transform: translateX(-50%); } }
 @media (prefers-reduced-motion: reduce) { .marquee-track { animation: none; flex-wrap: wrap; } }
@@ -191,7 +197,7 @@ a { color: inherit; }
 .logo-item img { height: 80px; width: auto; object-fit: contain; opacity: .9; }
 .logo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 24px; }
 .logo-grid .logo-item { background: var(--panel); border-radius: var(--r24); padding: 24px; }
-.logo-grid .logo-item img { height: 40px; }
+.logo-grid .logo-item img { height: 60px; border-radius: 12px; }
 .gallery { grid-auto-columns: min(864px, 85%); }
 .gallery img { border-radius: var(--r24); width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
 
@@ -246,3 +252,8 @@ a { color: inherit; }
   .table thead { display: none; }
   .whatsapp { right: 12px; bottom: 12px; }
 }
+
+/* Integration platform badges (Figma: Integration card) */
+.tech-logos { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+.tech-logos-item { display: inline-flex; align-items: center; gap: 12px; color: var(--muted); }
+.tech-logos img { width: 96px; height: 60px; border-radius: 12px; display: block; }

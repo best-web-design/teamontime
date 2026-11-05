@@ -11,7 +11,8 @@ const home = {
       'We connect design, development, integration and marketing\naround the priorities that matter to your business.',
       L('Scope a project', LINKS.contact), L('Explore a partnership', LINKS.partnership),
       'Projects from R50,000  ·  12-month partnerships  ·  Focused 90-day rollouts'),
-    s('logos', { style: 'marquee', items: ['Perfect Hideaways', 'Kinga Global', 'Nedbank', 'Clicks', 'Bogart Man', 'DStv', 'Client'].map((label) => ({ label, image: '' })) }),
+    s('logos', { style: 'marquee', items: [['DStv', 'dstv'], ['Perfect Hideaways', 'perfect-hideaways'], ['Kinga Global', 'kinga'], ['Nedbank', 'nedbank'], ['Clicks', 'clicks'], ['Bogart Man', 'bogart-man'], ['Natural Living Spa & Wellness Centre', 'natural-living']]
+      .map(([label, f]) => ({ label, image: `/assets/figma/client-${f}.png` })) }),
     s('cards', {
       eyebrow: 'ONE BUSINESS. ONE CONNECTED EXPERIENCE.', title: 'Make every part\nwork towards the result.',
       intro: 'A great website is only one part of the journey. The offer, experience, systems and follow-up all influence what happens next.\n\nWe start with the business priority, identify the friction and bring the right mix of skills around it. Every engagement considers the integrations that make the experience work.',
@@ -102,7 +103,8 @@ const services = [
     primary: L('Discuss your priority journey', LINKS.contact), secondary: L('Explore scoped projects', LINKS.projects),
     note: 'Discovery within a qualifying project or partnership. Standalone engagements start at R50,000.',
     priority: ['Find the friction before\ncommitting to the fix.', 'This is for teams with an existing website or product, a meaningful business goal and access to the people who own it. Start with one important journey: an enquiry, checkout, booking, onboarding flow or customer task.'],
-    priorityImageAlt: 'Pyramid: Vision, Goals, Plans, Execution',
+    priorityImage: '/assets/figma/strategy-pyramid.webp',
+    priorityImageAlt: 'Glass pyramid with four tiers labelled Vision, Goals, Plans and Execution',
     capTitle: 'A complete view of the experience.',
     caps: [
       ['01 / SCOPED CAPABILITY', 'Usability and journeys', 'Review interaction patterns, navigation and the steps customers take to reach the outcome.'],
