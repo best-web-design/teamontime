@@ -37,6 +37,7 @@ async function main() {
   const app = express();
   app.disable('x-powered-by');
   app.set('trust proxy', 1);
+  if (process.env.SITE_PASSWORD) app.use(require('./server/gate').gate(process.env.SITE_PASSWORD, process.env.JWT_SECRET));
   app.use((req, res, nextFn) => (/^\/(api|uploads)(\/|$)/.test(req.path) ? api(req, res, nextFn) : nextFn()));
   app.use((req, res) => handle(req, res));
   app.listen(port, () => console.log(`Site ready on :${port} (${dev ? 'dev' : 'production'})`));
