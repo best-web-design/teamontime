@@ -63,7 +63,66 @@ async function fillImages({ log = console.log } = {}) {
   }
 }
 
-module.exports = { seed, fillImages, fill };
+// Design updates: brings seeded pages and settings up to the latest seed-data without losing admin edits.
+// previous.json is the seed-data as it was before this update. A value still equal to that old seed value
+// was never edited in admin, so it takes the new value; anything changed in admin is kept as it is.
+const LAYOUT_VERSION = 1;
+const same = (a, b) => JSON.stringify(a) === JSON.stringify(b);
+const isObj = (v) => v && typeof v === 'object' && !Array.isArray(v);
+
+function merge3(cur, prev, next) {
+  let changed = false;
+  for (const [k, v] of Object.entries(next || {})) {
+    const p = prev ? prev[k] : undefined;
+    if (cur[k] === undefined) { if (v !== undefined) { cur[k] = v; changed = true; } continue; }
+    if (same(cur[k], v)) continue;
+    if (p !== undefined && same(cur[k], p)) { cur[k] = v; changed = true; continue; }
+    if (isObj(cur[k]) && isObj(v)) { if (merge3(cur[k], isObj(p) ? p : {}, v)) changed = true; continue; }
+    if (Array.isArray(cur[k]) && Array.isArray(v) && Array.isArray(p) && cur[k].length === p.length && p.length === v.length) {
+      v.forEach((it, i) => {
+        if (isObj(it) && isObj(cur[k][i])) { if (merge3(cur[k][i], isObj(p[i]) ? p[i] : {}, it)) changed = true; }
+        else if (same(cur[k][i], p[i]) && !same(cur[k][i], it)) { cur[k][i] = it; changed = true; }
+      });
+    }
+  }
+  // keys the new seed dropped, if never edited
+  for (const k of Object.keys(prev || {})) {
+    if (!(k in (next || {})) && k in cur && same(cur[k], prev[k])) { delete cur[k]; changed = true; }
+  }
+  return changed;
+}
+
+function mergeSections(cur, prev, next) {
+  const c = cur.sections || [];
+  if (same(c, prev)) { cur.sections = next; return !same(prev, next); }
+  if (prev.length !== next.length) return false; // edited in admin and restructured in seed: leave it
+  let changed = false;
+  next.forEach((sec, i) => {
+    const cs = c[i], ps = prev[i];
+    if (!cs || !ps || cs.type !== ps.type) return;
+    if (cs.type !== sec.type) { cs.type = sec.type; changed = true; }
+    cs.data ||= {};
+    if (merge3(cs.data, ps.data || {}, sec.data || {})) changed = true;
+  });
+  return changed;
+}
+
+async function updateLayout({ log = console.log } = {}) {
+  const settings = await store.settings.get();
+  if ((settings._layoutVersion || 0) >= LAYOUT_VERSION) return;
+  const prev = require(path.join(dir, 'previous.json'));
+  merge3(settings, prev.settings, require(path.join(dir, 'settings.js')));
+  settings._layoutVersion = LAYOUT_VERSION;
+  await store.settings.set(settings);
+  for (const src of require(path.join(dir, 'pages.js'))) {
+    const cur = await store.pages.bySlug(src.slug, { publishedOnly: false });
+    const old = prev.pages[src.slug];
+    if (!cur || !old) continue;
+    if (mergeSections(cur, old.sections || [], src.sections || [])) { await store.pages.update(cur._id, cur); log(`design updated: ${src.slug}`); }
+  }
+}
+
+module.exports = { seed, fillImages, fill, merge3, mergeSections, updateLayout };
 
 if (require.main === module) {
   require('dotenv').config({ path: path.join(__dirname, '..', '.env'), quiet: true });

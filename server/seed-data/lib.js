@@ -11,14 +11,15 @@ const s = (type, data) => ({ type, data });
 const hero = (breadcrumb, title, lead, primary, secondary, note, extra = {}) => s('hero', { breadcrumb, title, lead, primary, secondary, note, align: 'center', ...extra });
 const cards = (eyebrow, title, items, extra = {}) => s('cards', { eyebrow, title, items: items.map(([kicker, t, body]) => ({ kicker, title: t, body })), ...extra });
 const faq = (eyebrow, title, items) => s('faq', { eyebrow, title, items: items.map(([q, a]) => ({ q, a })) });
-const cta = (eyebrow, title, lead, primary, note, secondary) => s('cta', { eyebrow, title, lead, primary, secondary, note });
+const cta = (eyebrow, title, lead, primary, note, secondary, extra = {}) => s('cta', { eyebrow, title, lead, primary, secondary, note, ...extra });
 const steps3 = (eyebrow, title, items, extra = {}) => s('steps', { eyebrow, title, items: items.map(([kicker, t, body, note]) => ({ kicker, title: t, body, note })), ...extra });
-const caseStudies = (eyebrow, title) => s('caseStudies', { eyebrow, title, subtitle: 'Case studies', kind: 'case-study' });
+const caseStudies = (eyebrow, title, intro) => s('caseStudies', { eyebrow, title, ...(intro ? { intro } : {}), subtitle: 'Case studies', kind: 'case-study' });
 
 const seo = (metaTitle, metaDescription) => ({ metaTitle, metaDescription });
 
 // Shared engagement cards (Figma "BWD / Engagement card", project + partnership variants).
 const engagement = (intro, projectValue = 'From R50,000', opts = {}) => s('engagement', {
+  ...(opts.style ? { style: opts.style } : {}),
   eyebrow: opts.eyebrow || 'A CLEAR COMMERCIAL START',
   title: opts.title || 'Choose the right engagement.',
   intro,
@@ -43,7 +44,7 @@ function service(o) {
       cards('THE RIGHT MIX OF CAPABILITIES', o.capTitle, o.caps, o.capExtra),
       ...(o.afterCaps || []),
       s('journey', { eyebrow: 'HOW THE WORK CONNECTS', title: o.journey.title, intro: o.journey.intro,
-        steps: o.journey.steps.map(([kicker, title, body]) => ({ kicker, title, body })), boundary: o.journey.boundary, note: o.journey.note }),
+        steps: o.journey.steps.map(([kicker, title, body]) => ({ kicker, title, body })), boundary: o.journey.boundary, note: o.journey.note, ...(o.journey.style ? { style: o.journey.style } : {}) }),
       steps3('FROM PRIORITY TO IMPLEMENTATION', o.delivery.title, o.delivery.items),
       s('panels', { items: [
         { eyebrow: 'WHAT YOU CAN EXPECT', title: o.scope.title, body: o.scope.body },
@@ -69,7 +70,7 @@ function industry(o) {
       cards('WHERE THE WORK STARTS', 'Where does the journey lose momentum?', o.problems.map(([t, b], i) => [`0${i + 1} / FRICTION TO INVESTIGATE`, t, b]),
         { intro: 'We validate these friction points against your customer evidence, current systems and team processes.' }),
       s('cards', {
-        eyebrow: 'DESIGN · DEVELOPMENT · INTEGRATION · GROWTH', title: 'The right mix around one priority.',
+        style: 'filled', eyebrow: 'DESIGN · DEVELOPMENT · INTEGRATION · GROWTH', title: 'The right mix around one priority.',
         intro: 'One agreed scope brings together the capabilities needed for the outcome. We prioritise the work with your team.',
         items: o.services.map(([title, body], i) => ({
           kicker: ['01 / STRATEGY, UX & CONVERSION', '02 / WEBSITES & DIGITAL PRODUCTS', '03 / SYSTEMS INTEGRATION & AUTOMATION',
@@ -82,7 +83,7 @@ function industry(o) {
       s('journey', { eyebrow: 'AN EXAMPLE TO DISCUSS', title: o.journey.title,
         intro: 'A practical sequence to scope around your current tools and the people responsible for the next step.',
         steps: o.journey.steps.map(([title, body], i) => ({ kicker: `0${i + 1}`, title, body })), note: o.journey.scope,
-        cta: L('Explore integration options', LINKS.integrations), panel: false }),
+        cta: { ...L('Explore integration options', LINKS.integrations), style: 'outline' }, panel: false }),
       s('steps', { anchor: 'rollout', eyebrow: 'A FOCUSED DELIVERY CYCLE', title: 'What could the first 90 days look like?', style: 'card',
         intro: 'A starting framework, refined through discovery. We agree one priority, the delivery scope, the owners and the measures before work begins.',
         items: o.rollout.map(([title, body, note], i) => ({ kicker: ['DAYS 01–30', 'DAYS 31–60', 'DAYS 61–90'][i], title, body, note })),
@@ -92,7 +93,7 @@ function industry(o) {
         items: o.kpis.map(([title, body, note], i) => ({ kicker: `MEASURE / 0${i + 1}`, title, body, note })),
         note: 'Review the delivery progress weekly and performance at the agreed cadence. Compare suitable periods and record other changes that could affect the result.' }),
       engagement('Our strongest partnership fit is a team of 10+ people with a dedicated marketing owner, an operational counterpart and the capacity to act on shared priorities.', 'From R50 000', {
-        eyebrow: 'BUILT FOR ESTABLISHED TEAMS', title: 'A clear owner. A focused scope.', k1: '01 / SCOPED PROJECTS', k2: '02 / DIGITAL GROWTH PARTNERSHIP',
+        style: 'solid', eyebrow: 'BUILT FOR ESTABLISHED TEAMS', title: 'A clear owner. A focused scope.', k1: '01 / SCOPED PROJECTS', k2: '02 / DIGITAL GROWTH PARTNERSHIP',
         b1: 'A defined business outcome, prioritised requirements and agreed acceptance criteria. Design, development, integration and marketing support are scoped together where needed.',
         n1: 'Final scope, investment and VAT treatment are confirmed in your proposal.',
         b2: 'Focused 90-day rollout plans, agreed KPIs and ongoing improvement with your marketing and operational teams.',
@@ -104,4 +105,26 @@ function industry(o) {
   };
 }
 
-module.exports = { L, LINKS, s, hero, cards, faq, cta, steps3, caseStudies, engagement, service, industry, seo };
+// Technology logos from the Figma "Technologies Carousel" (P04, P12), rebuilt as SVG tiles.
+const TECH_TILES = [
+  { label: "monday.com", image: '/assets/figma/tech/tech-01.svg' },
+  { label: "Dovetail", image: '/assets/figma/tech/tech-02.svg' },
+  { label: "Shopify", image: '/assets/figma/tech/tech-03.svg' },
+  { label: "Google", image: '/assets/figma/tech/tech-04.svg' },
+  { label: "Zapier", image: '/assets/figma/tech/tech-05.svg' },
+  { label: "Google Analytics", image: '/assets/figma/tech/tech-06.svg' },
+  { label: "JetEngine", image: '/assets/figma/tech/tech-07.svg' },
+  { label: "Platform partner", image: '/assets/figma/tech/tech-08.svg' },
+  { label: "WooCommerce", image: '/assets/figma/tech/tech-09.svg' },
+  { label: "Platform partner", image: '/assets/figma/tech/tech-10.svg' },
+  { label: "Platform partner", image: '/assets/figma/tech/tech-11.svg' },
+  { label: "Make", image: '/assets/figma/tech/tech-12.svg' },
+  { label: "Xero", image: '/assets/figma/tech/tech-13.svg' },
+  { label: "HubSpot", image: '/assets/figma/tech/tech-14.svg' },
+  { label: "Brevo", image: '/assets/figma/tech/tech-15.svg' },
+  { label: "Mailchimp", image: '/assets/figma/tech/tech-16.svg' },
+  { label: "Platform partner", image: '/assets/figma/tech/tech-17.svg' },
+  { label: "OpenAI", image: '/assets/figma/tech/tech-18.svg' },
+];
+
+module.exports = { L, LINKS, s, hero, cards, faq, cta, steps3, caseStudies, engagement, service, industry, seo, TECH_TILES };

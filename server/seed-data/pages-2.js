@@ -1,5 +1,5 @@
 // P08–P14 from Figma, plus legal placeholders linked from the footer.
-const { L, LINKS, s, hero, cards, faq, cta, steps3, engagement, seo } = require('./lib');
+const { L, LINKS, s, hero, cards, faq, cta, steps3, engagement, seo, TECH_TILES } = require('./lib');
 const arrows = (lines) => lines.join('\n');
 
 const scoped = {
@@ -17,18 +17,22 @@ const scoped = {
       ['03 / AGREED PRIORITY', 'Scope and acceptance', 'Document deliverables, exclusions, dependencies, milestones and how the completed work will be accepted.'],
       ['04 / AGREED PRIORITY', 'Dependencies and ownership', 'Confirm systems, content, access, decision-makers and handover responsibilities. Make client and third-party dependencies visible from the start.'],
     ]),
-    s('text', { eyebrow: 'ILLUSTRATIVE SCOPE / COMMERCE CATALOGUE', title: 'Useful on day one.\nReady for what follows.', body: 'A first release should solve a complete customer task. Later phases can add capabilities through their own agreed scope.' }),
-    s('panels', { items: [
-      { eyebrow: 'RELEASE 01 / SCOPE FOCUS', title: 'Product discovery\nto a qualified quote.', bullets: arrows(['Product categories and useful detail', 'A quote list with options and quantities', 'An enquiry sent to the agreed sales owner', 'Responsive layouts and acceptance tests']) },
-      { eyebrow: 'LATER PHASES / QUOTED SEPARATELY', title: 'Extend when the\nbusiness is ready.', bullets: arrows(['Online payments and checkout', 'Stock, order and courier connections', 'Additional customer account functionality', 'Ongoing campaigns and optimisation']) },
-    ] }),
-    s('text', { eyebrow: 'A SHARED DEFINITION OF DONE', body: 'A test customer can find a product, select the required options and submit a quote request. The agreed details reach the correct sales owner and can be followed up.\n\nIllustrative scope only. Your proposal defines the actual features, integrations, exclusions and acceptance criteria.' }),
+    s('panels', { style: 'nested', eyebrow: 'ILLUSTRATIVE SCOPE / COMMERCE CATALOGUE', title: 'Useful on day one.\nReady for what follows.',
+      intro: 'A first release should solve a complete customer task. Later phases can add capabilities through their own agreed scope.',
+      items: [
+        { eyebrow: 'RELEASE 01 / SCOPE FOCUS', title: 'Product discovery\nto a qualified quote.', bullets: arrows(['Product categories and useful detail', 'A quote list with options and quantities', 'An enquiry sent to the agreed sales owner', 'Responsive layouts and acceptance tests']) },
+        { eyebrow: 'LATER PHASES / QUOTED SEPARATELY', title: 'Extend when the\nbusiness is ready.', bullets: arrows(['Online payments and checkout', 'Stock, order and courier connections', 'Additional customer account functionality', 'Ongoing campaigns and optimisation']) },
+      ],
+      footLabel: 'A SHARED DEFINITION OF DONE',
+      footBody: 'A test customer can find a product, select the required options and submit a quote request. The agreed details reach the correct sales owner and can be followed up.',
+      footNote: 'Illustrative scope only. Your proposal defines the actual features, integrations, exclusions and acceptance criteria.' }),
     steps3('FROM BRIEF TO HANDOVER', 'Know what happens next.', [
       ['01 / DELIVERY', 'Brief and discovery', 'Review the business need and fit. Where detailed investigation is required, agree the discovery scope and fee before it starts.'],
       ['02 / DELIVERY', 'Scope and delivery', 'Approve the requirements, quote and delivery agreement. Progress through design, build and review milestones.'],
       ['03 / DELIVERY', 'Acceptance and launch', 'Test against the agreed criteria, complete launch requirements and hand over the specified assets and operating information.'],
-    ], { note: 'APPROVE THE SCOPE BEFORE DELIVERY STARTS — The requirements, quote, review responsibilities and delivery agreement establish the shared plan. Where paid discovery is needed, its scope and fee are agreed before it begins.' }),
-    s('panels', { items: [
+    ], { style: 'band', image: '/assets/figma/integration-bg.jpg', noteLabel: 'APPROVE THE SCOPE BEFORE DELIVERY STARTS',
+      note: 'The requirements, quote, review responsibilities and delivery agreement establish the shared plan. Where paid discovery is needed, its scope and fee are agreed before it begins.' }),
+    s('panels', { list: 'muted', items: [
       { eyebrow: 'PROJECT INVESTMENT', title: 'From R50,000', body: 'A minimum project investment, with the final fee shaped by the work required.',
         bullets: arrows(['Priority journeys and functionality', 'Content, migration and system connections', 'Testing, launch and handover requirements']),
         note: 'Discovery fees, payment milestones, licences, hosting and applicable VAT treatment are set out in the proposal. R50,000 is not a fixed price for every build.' },
@@ -40,10 +44,9 @@ const scoped = {
       ['02 / ASSESS', 'Review the impact', 'Check the effect on cost, timing, dependencies and the current priority.'],
       ['03 / AGREE', 'Approve the next step', 'Agree the change before adding it to delivery, or place it in a later phase.'],
     ], { style: 'card', note: 'Payment milestones, client reviews and post-launch support are recorded in the agreement.' }),
-    s('text', { eyebrow: 'DEFINE SUCCESS BEFORE THE BUILD', title: 'Delivery acceptance.\nBusiness performance.' }),
-    s('panels', { items: [
-      { eyebrow: '01 / WHAT THE PROJECT MUST DO', title: 'Test the agreed task.', body: 'Confirm that the defined journey works: the enquiry is routed correctly, the order completes or the required record reaches the right system.' },
-      { eyebrow: '02 / WHAT THE BUSINESS WILL LEARN', title: 'Review the outcome.', body: 'Where included in scope, review qualified enquiries, completed orders or handling time after launch. Agree the baseline, measurement period and reporting owner.' },
+    s('panels', { eyebrow: 'DEFINE SUCCESS BEFORE THE BUILD', title: 'Delivery acceptance.\nBusiness performance.', items: [
+      { eyebrow: '01 / WHAT THE PROJECT MUST DO', size: 'h3', title: 'Test the agreed task.', body: 'Confirm that the defined journey works: the enquiry is routed correctly, the order completes or the required record reaches the right system.' },
+      { eyebrow: '02 / WHAT THE BUSINESS WILL LEARN', size: 'h3', title: 'Review the outcome.', body: 'Where included in scope, review qualified enquiries, completed orders or handling time after launch. Agree the baseline, measurement period and reporting owner.' },
     ] }),
     faq('BEFORE WE BEGIN', 'A few useful answers.', [
       ['What is the minimum project investment?', 'Projects start at R50,000. We confirm the final scope, investment and applicable VAT treatment in the proposal.'],
@@ -74,7 +77,7 @@ const partnership = {
       ['01 / TEAM', 'An operating business', 'An established team, typically with 10+ people and working sales, service or fulfilment processes.'],
       ['02 / OWNERSHIP', 'A marketing owner', 'A dedicated person or team accountable for priorities, decisions and performance.'],
       ['03 / DELIVERY', 'Room to act', 'Access to systems, timely approvals and resources to put the agreed improvements into practice.'],
-    ], { style: 'card', note: 'For a defined one-off requirement, a scoped project may be the better starting point.' }),
+    ], { style: 'card', attach: true, note: 'For a defined one-off requirement, a scoped project may be the better starting point.' }),
     cards('ONE SHARED QUARTERLY PRIORITY', 'Give the first quarter\na clear commercial focus.', [
       ['01 / AGREED PRIORITY', 'Pipeline and lead conversion', 'Connect the offer, enquiry journey, CRM ownership and sales feedback.'],
       ['02 / AGREED PRIORITY', 'Commerce performance', 'Improve an agreed buying journey and the operational connections behind it.'],
@@ -92,9 +95,11 @@ const partnership = {
       ['DAYS 01–30', 'Understand\n& prioritise', 'Agree the objective, definitions and baseline. Map the priority journey, confirm dependencies and release feasible early improvements.', 'OUTPUT / AGREED PLAN + BASELINE'],
       ['DAYS 31–60', 'Build\n& connect', 'Build and launch the agreed changes with the required connections, testing and client review.', 'OUTPUT / TESTED PRIORITY IMPROVEMENTS'],
       ['DAYS 61–90', 'Measure\n& refine', 'Review delivery and performance evidence, address friction and agree the next-quarter backlog.', 'OUTPUT / REVIEW + NEXT PRIORITIES'],
-    ], { anchor: 'rollout', style: 'card', intro: 'A practical sequence shaped by your starting point, the confirmed scope and the dependencies.',
-      note: 'MONTHS 4–12 / BUILD ON THE EVIDENCE — Keep the progress moving. Review priorities each quarter, improve the agreed journeys and plan the next releases within contracted capacity. The first 90 days are the opening cycle of the 12-month commitment.\nThe final sequence and timing reflect the agreed scope, access, approvals and technical dependencies.' }),
-    s('table', { eyebrow: 'ILLUSTRATIVE KPI CHARTER / ENQUIRY QUALITY', title: 'Agree what progress means.',
+    ], { anchor: 'rollout', style: 'band-cards', image: '/assets/figma/integration-bg.jpg', intro: 'A practical sequence shaped by your starting point, the confirmed scope and the dependencies.',
+      noteLabel: 'MONTHS 4–12 / BUILD ON THE EVIDENCE', noteTitle: 'Keep the progress moving.',
+      note: 'Review priorities each quarter, improve the agreed journeys and plan the next releases within contracted capacity. The first 90 days are the opening cycle of the 12-month commitment.',
+      footnote: 'The final sequence and timing reflect the agreed scope, access, approvals and technical dependencies.' }),
+    s('table', { style: 'charter', eyebrow: 'ILLUSTRATIVE KPI CHARTER / ENQUIRY QUALITY', title: 'Agree what progress means.',
       intro: 'Define the measure before setting the target. Track delivery commitments and business outcomes separately.',
       rows: [
         'METRIC + DEFINITION | Sales-accepted enquiry rate: the share of valid enquiries accepted by sales under an agreed definition.',
@@ -105,17 +110,16 @@ const partnership = {
         'REVIEW CADENCE | Review performance monthly and use the evidence to set the next quarterly priorities.',
       ].join('\n'),
       note: 'Outcomes also depend on demand, budget, sales activity and other dependencies. Targets guide the work; they are not guaranteed results.' }),
-    s('text', { eyebrow: 'A CLEAR COMMITMENT ON BOTH SIDES', title: 'A partnership needs\nshared ownership.' }),
-    s('panels', { items: [
-      { eyebrow: 'BWD / DELIVERY PARTNER', title: 'Make the work visible.', bullets: arrows(['Plan and deliver the agreed workstreams', 'Coordinate the required design, build and integration', 'Report progress and surface dependencies', 'Recommend priorities from the available evidence']) },
-      { eyebrow: 'YOUR TEAM / BUSINESS OWNER', title: 'Make decisions actionable.', bullets: arrows(['Provide context, access and a decision-maker', 'Approve content and work within agreed review windows', 'Own sales, service and operational follow-through', 'Record business outcomes and resolve internal dependencies']) },
+    s('panels', { eyebrow: 'A CLEAR COMMITMENT ON BOTH SIDES', title: 'A partnership needs\nshared ownership.', list: 'muted', items: [
+      { eyebrow: 'BWD / DELIVERY PARTNER', size: 'h3', title: 'Make the work visible.', bullets: arrows(['Plan and deliver the agreed workstreams', 'Coordinate the required design, build and integration', 'Report progress and surface dependencies', 'Recommend priorities from the available evidence']) },
+      { eyebrow: 'YOUR TEAM / BUSINESS OWNER', size: 'h3', title: 'Make decisions actionable.', bullets: arrows(['Provide context, access and a decision-maker', 'Approve content and work within agreed review windows', 'Own sales, service and operational follow-through', 'Record business outcomes and resolve internal dependencies']) },
     ] }),
     steps3('CONTINUITY WITH A CLEAR PROCESS', 'Keep priorities\nand progress visible.', [
       ['MONTHLY', 'Review the work', 'Review deliverables, KPIs, decisions and dependencies. Keep the active backlog aligned with the agreed priority.'],
       ['QUARTERLY', 'Set the next focus', 'Use the evidence to choose the next objective and releases within the contracted capacity.'],
       ['WHEN SCOPE CHANGES', 'Assess the impact', 'Check the effect on capacity, cost and timing. Agree material changes before adding them to delivery.'],
     ], { style: 'card' }),
-    s('panels', { items: [
+    s('panels', { list: 'muted', items: [
       { eyebrow: 'PARTNERSHIP INVESTMENT', title: 'Monthly investment.\nAnnual commitment.', body: 'Your proposal sets the workstreams, delivery capacity, complexity and monthly fee for the 12-month engagement.',
         bullets: arrows(['Agreed priorities and delivery capacity', 'Defined review and reporting cadence', 'Clear change and approval procedures']),
         note: 'The full annual commitment, exclusions and applicable tax treatment are made clear before you sign.' },
@@ -146,13 +150,13 @@ const howWeWork = {
     hero('HOME  /  HOW WE WORK', 'Two ways to work.\nOne connected approach.',
       'Choose a defined project or a continuing partnership. Both start with your business priority and bring together the capabilities needed to move it forward.',
       L('Explore scoped projects', LINKS.projects), L('Explore partnerships', LINKS.partnership)),
-    engagement('', 'From R50,000', {
+    engagement('', 'From R50,000', { style: 'flat',
       eyebrow: 'START WITH THE KIND OF CHANGE', title: 'A clear finish line.\nOr a continuing rhythm.', k1: '01 / SCOPED PROJECTS', k2: '02 / DIGITAL GROWTH PARTNERSHIPS',
       b1: 'For a defined build or improvement. Agree requirements, priorities, deliverables and acceptance criteria before delivery starts.',
       n1: 'Final investment, timing and VAT treatment follow the agreed scope.', c1: 'Explore scoped projects',
       b2: 'For established teams ready to improve over time. Begin with a focused 90-day rollout, defined KPIs and a shared quarterly priority.', c2: 'Explore partnerships',
     }),
-    s('table', { eyebrow: 'CHOOSE WHAT FITS YOUR BUSINESS', title: 'Make the decision clearer.',
+    s('table', { style: 'charter', eyebrow: 'CHOOSE WHAT FITS YOUR BUSINESS', title: 'Make the decision clearer.',
       columns: '\nScoped project\nDigital growth partnership',
       rows: [
         'Best for | A defined change and usable deliverables. | Ongoing improvement with an accountable internal owner.',
@@ -229,7 +233,7 @@ const integrations = {
       items: [['01', 'Design', 'Make the journey clear.'], ['02', 'Development', 'Build the experience.'], ['03', 'Integration', 'Connect data and actions.'], ['04', 'Growth Marketing', 'Measure and improve.']]
         .map(([kicker, title, body]) => ({ kicker, title, body })),
       cta: L('Explore systems integration', LINKS.systems) }),
-    s('logos', { eyebrow: 'TECHNOLOGIES', title: 'Experienced integration.', style: 'grid', items: TECH.map(([label, f]) => ({ label, image: `/assets/figma/int-${f}.png` })) }),
+    s('logos', { eyebrow: 'TECHNOLOGIES', title: 'Experienced integration.', style: 'tiles', items: TECH_TILES }),
     s('integrations', { anchor: 'catalogue', eyebrow: 'EXPLORE POSSIBILITIES', title: 'Find the connections\nyour business needs.',
       intro: 'Browse integration examples for established marketing and operations teams. We scope the right combination around your existing systems, customer journey and priorities.',
       filterHelp: 'Choose a discipline below. Some integrations support more than one, so they appear in multiple filters.',
@@ -307,13 +311,13 @@ const contact = {
         { title: 'Digital Growth Partnerships', body: '12-month engagements with focused 90-day rollout plans. Best suited to established teams with a marketing owner.' },
       ],
       showContact: true, support: 'Already a client? Use the support route and response commitments in your agreement.',
-      formTitle: 'Tell us about your next priority.', submitLabel: 'Send enquiry',
+      formTitle: 'Tell us about your next priority.', formNote: 'Fields marked * are required.', submitLabel: 'Send enquiry',
       privacy: 'By sending this enquiry, you ask BWD to contact you about your requirements. Read our Privacy Notice for how your information is handled.',
       success: 'Thanks for the context.\nWe’ll review your requirements and contact you about a suitable next step.' }),
     s('steps', { eyebrow: 'CLEAR NEXT STEPS', title: 'From conversation to clarity.', style: 'card', items: [
-      { kicker: '01', title: 'Understand the priority', body: 'We review your business context, current journey and the outcome you want.' },
-      { kicker: '02', title: 'Assess the right fit', body: 'We consider scope, systems, budget and the people who will own the work.' },
-      { kicker: '03', title: 'Define a useful next step', body: 'We recommend a scoped project, suitable partnership or further discovery.' },
+      { title: '01  Understand the priority', body: 'We review your business context, current journey and the outcome you want.' },
+      { title: '02  Assess the right fit', body: 'We consider scope, systems, budget and the people who will own the work.' },
+      { title: '03  Define a useful next step', body: 'We recommend a scoped project, suitable partnership or further discovery.' },
     ] }),
     faq('YOUR QUESTIONS, ANSWERED', 'Before you get in touch.', [
       ['How do we start a conversation with BWD?', 'Tell us about your business, the main challenge and the outcome you want. The contact form helps route the enquiry to the right discussion. If you would like an initial view of your website before defining scope, use the Free Audit option.'],

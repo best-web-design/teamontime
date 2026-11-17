@@ -28,6 +28,9 @@ export function Field({ f, value, onChange }) {
           <div className="adm-row" style={{ flexWrap: 'nowrap' }}>
             <input placeholder="Button label" value={value?.label || ''} onChange={(e) => onChange({ ...value, label: e.target.value })} />
             <input placeholder="/contact or https://…" value={value?.href || ''} onChange={(e) => onChange({ ...value, href: e.target.value })} />
+            <select aria-label="Button style" value={value?.style || ''} onChange={(e) => onChange({ ...value, style: e.target.value || undefined })} style={{ maxWidth: 130 }}>
+              <option value="">Default</option><option value="primary">Primary</option><option value="outline">Outline</option><option value="accent">Green</option>
+            </select>
           </div>
         </Wrap>
       );

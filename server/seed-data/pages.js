@@ -1,6 +1,6 @@
 // Page content copied from Figma "BWD Website Services — Agency9" → 03 Desktop drafts (P01–P21).
 // Images are empty until the Figma assets are exported; add them in Admin → Pages.
-const { L, LINKS, s, hero, cards, faq, cta, steps3, caseStudies, engagement, service, industry, seo } = require('./lib');
+const { L, LINKS, s, hero, cards, faq, cta, steps3, caseStudies, engagement, service, industry, seo, TECH_TILES } = require('./lib');
 
 const home = {
   slug: 'home', title: 'Home', order: 0,
@@ -14,17 +14,19 @@ const home = {
     s('logos', { style: 'marquee', items: [['DStv', 'dstv'], ['Perfect Hideaways', 'perfect-hideaways'], ['Kinga Global', 'kinga'], ['Nedbank', 'nedbank'], ['Clicks', 'clicks'], ['Bogart Man', 'bogart-man'], ['Natural Living Spa & Wellness Centre', 'natural-living']]
       .map(([label, f]) => ({ label, image: `/assets/figma/client-${f}.png` })) }),
     s('cards', {
-      eyebrow: 'ONE BUSINESS. ONE CONNECTED EXPERIENCE.', title: 'Make every part\nwork towards the result.',
-      intro: 'A great website is only one part of the journey. The offer, experience, systems and follow-up all influence what happens next.\n\nWe start with the business priority, identify the friction and bring the right mix of skills around it. Every engagement considers the integrations that make the experience work.',
+      style: 'outcomes', eyebrow: 'ONE BUSINESS. ONE CONNECTED EXPERIENCE.', title: 'Make every part\nwork towards the result.',
+      highlight: 'A great website is\nonly one part of the journey.',
+      subhead: 'The offer, experience, systems and follow-up all influence what happens next.',
+      intro: 'We start with the business priority, identify the friction and bring the right mix of skills around it. Every engagement considers the integrations that make the experience work.',
       columns: '3',
       items: [
-        { title: 'Convert demand', body: 'Help qualified customers take the next step.' },
-        { title: 'Connect operations', body: 'Reduce the manual work between systems.' },
-        { title: 'Measure progress', body: 'Agree the baseline, owner and success measures.' },
+        { title: 'Convert demand', body: 'Help qualified customers take the next step.', image: '/assets/figma/cube-underside.png', shape: 'bar' },
+        { title: 'Connect operations', body: 'Reduce the manual work between systems.', image: '/assets/figma/cube-front.png', shape: 'ring' },
+        { title: 'Measure progress', body: 'Agree the baseline, owner and success measures.', image: '/assets/figma/cube-corner.png', shape: 'hex' },
       ],
     }),
     s('cards', {
-      anchor: 'services', eyebrow: 'OUR CAPABILITIES', title: 'The right mix.\nAround your priority.', columns: '3',
+      anchor: 'services', style: 'filled', eyebrow: 'OUR CAPABILITIES', title: 'The right mix.\nAround your priority.', columns: '2',
       intro: 'Six connected service families. Scoped around the outcome your business needs.',
       items: [
         ['01 / STRATEGY', 'Strategy, UX\n& Conversion', 'Find the friction in your customer journey and turn it into a prioritised plan for improvement.', 'Explore strategy & UX', LINKS.strategy],
@@ -34,15 +36,15 @@ const home = {
         ['05 / GROWTH', 'Growth Marketing\n& CRO', 'Connect search, campaigns, landing pages and follow-up around a clear commercial objective.', 'Explore growth & CRO', LINKS.growth],
         ['06 / PHYSICAL TO DIGITAL', 'Dynamic QR\nExperiences', 'Connect print, products and places to editable destinations, useful actions and integrated journeys.', 'Explore dynamic QR', LINKS.qr],
       ].map(([kicker, title, body, label, href]) => ({ kicker, title, body, link: L(label, href) })),
-      note: 'The scope selects the skills you need. Every channel or capability is not automatically included.',
+      note: 'The scope selects the skills you need.\nEvery channel or capability is not automatically included.',
     }),
     s('journey', {
-      eyebrow: 'INTEGRATION IS PART OF THE PLAN', title: 'One enquiry.\nA connected journey.', panel: false,
+      eyebrow: 'INTEGRATION IS PART OF THE PLAN', title: 'One enquiry.\nA connected journey.', style: 'glass', image: '/assets/figma/integration-bg.jpg',
       intro: 'A better experience continues after the form is submitted.',
       steps: [['01  →', 'Attract', 'The right audience finds a relevant offer.'], ['02  →', 'Convert', 'A clear page makes the next step easy.'],
         ['03  →', 'Connect', 'The enquiry reaches your CRM and owner.'], ['04  →', 'Improve', 'Sales feedback informs the next decision.']].map(([kicker, title, body]) => ({ kicker, title, body })),
       note: 'We plan the systems, data, responsibilities and exception handling together, so the journey works for customers and the team behind it.',
-      cta: L('Explore integration', LINKS.integrations),
+      cta: { ...L('Explore integration', LINKS.integrations), style: 'outline' },
     }),
     s('engagement', {
       eyebrow: 'YOUR NEXT MOVE', title: 'Two ways to\nmove forward.',
@@ -62,17 +64,18 @@ const home = {
       ['DAYS 01–30', 'Understand\n& prioritise', 'Agree the objective, validate the baseline and map the customer journey and system dependencies.', 'Output: a focused delivery plan'],
       ['DAYS 31–60', 'Build\n& connect', 'Release the priority improvements. Connect the workflow, test the journey and make progress visible.', 'Output: working, tested improvements'],
       ['DAYS 61–90', 'Measure\n& refine', 'Review what changed, resolve friction and use the evidence to set the next quarter’s priorities.', 'Output: performance review + next plan'],
-    ], { intro: 'One priority. A practical rollout. Measures that tell us what to improve.', style: 'card' }),
-    s('panels', { items: [{
+    ], { intro: 'One priority. A practical rollout. Measures that tell us what to improve.', style: 'plain' }),
+    s('panels', { style: 'attached', items: [{
       title: 'Agree what progress means.',
       body: 'Sales-accepted enquiries  /  Booking completion  /  Checkout completion  /  Manual handling time',
       detail: 'For each KPI: baseline, definition, source, owner and review date. Targets follow discovery; results depend on the wider business.',
       note: 'MONTHS 4–12  →  Improve what works, expand selectively and agree the next priorities each quarter.',
     }] }),
-    caseStudies('CONNECTED EXPERIENCES', 'What this can\nlook like in practice.'),
+    caseStudies('CONNECTED EXPERIENCES', 'What this can\nlook like in practice.', 'See how design, development and integration can work together across a customer journey.'),
     s('cards', {
-      eyebrow: 'BUILT FOR ESTABLISHED BUSINESSES', title: 'A partner for teams\nready to act.', columns: '3',
-      intro: 'Our partnerships work best with established businesses, typically with 10+ people, a dedicated marketing owner and the structure to turn decisions into action.\n\nYou bring business context, access and timely decisions. We bring a prioritised plan, connected delivery and a clear view of what has shipped, what it means and what comes next.',
+      style: 'fit', eyebrow: 'BUILT FOR ESTABLISHED BUSINESSES', title: 'A partner for teams\nready to act.', columns: '3',
+      highlight: 'Our partnerships work best with established businesses, typically with 10+ people, a dedicated marketing owner and the structure to turn decisions into action.',
+      intro: 'You bring business context, access and timely decisions. We bring a prioritised plan, connected delivery and a clear view of what has shipped, what it means and what comes next.',
       items: [
         { title: 'Clear scope', body: 'Deliverables, responsibilities and exclusions agreed before work begins.' },
         { title: 'Visible progress', body: 'Shared priorities, review points and decisions your team can follow.' },
@@ -90,7 +93,7 @@ const home = {
       ['How will we know whether the work is performing?', 'We agree the starting position, KPI definitions, data sources and who owns each measure. Depending on the business, useful measures may include qualified enquiries, direct bookings, completed purchases or time saved. Reporting connects delivery to these outcomes and explains what needs attention.'],
     ]),
     cta('LET’S DEFINE YOUR NEXT MOVE', 'What needs to\nwork better?', 'Tell us the business priority. We’ll help shape the right scope.',
-      L('Scope a project', LINKS.contact), 'Projects from R50,000  /  12-month partnerships with a focused first 90 days', L('Explore a partnership', LINKS.partnership)),
+      L('Scope a project', LINKS.contact), 'Projects from R50,000  /  12-month partnerships with a focused first 90 days', L('Explore a partnership', LINKS.partnership), { size: 'display' }),
   ],
 };
 
@@ -112,7 +115,7 @@ const services = [
       ['03 / SCOPED CAPABILITY', 'Competition and content', 'Examine the expectations customers bring, the clarity of your offer, decision support and calls to action.'],
       ['04 / SCOPED CAPABILITY', 'Prioritised recommendations', 'Rank findings by user severity, commercial impact, evidence confidence and implementation effort.'],
     ],
-    journey: { title: 'From evidence\nto a useful next move.', intro: 'A useful audit connects the customer’s difficulty to the work that can resolve it.',
+    journey: { style: 'soft', title: 'From evidence\nto a useful next move.', intro: 'A useful audit connects the customer’s difficulty to the work that can resolve it.',
       steps: [['01 / EVIDENCE', 'A form loses context', 'Review the journey, completion behaviour and the records received by sales.'],
         ['02 / FINDING', 'The handover is incomplete', 'Separate observed issues from assumptions. Assess impact, confidence and effort.'],
         ['03 / ACTION', 'Fix the whole handover', 'Improve questions and validation, map CRM fields and define acceptance checks.']],
@@ -152,7 +155,8 @@ const services = [
       ['03 / SCOPED CAPABILITY', 'Portals and digital products', 'Customer accounts, booking flows and operational tools shaped around real user tasks and access requirements.'],
       ['04 / SCOPED CAPABILITY', 'Connected launch foundations', 'Plan content ownership, measurement, migration and operational handover alongside the customer experience.'],
     ],
-    afterCaps: [s('gallery', { eyebrow: 'PORTFOLIO', title: 'The pixels\nwe’ve pushed.', items: [] })],
+    afterCaps: [s('gallery', { eyebrow: 'PORTFOLIO', title: 'The pixels\nwe’ve pushed.', style: 'portfolio',
+      items: [{ image: '/assets/figma/portfolio-greenbacks.jpg', alt: 'Greenbacks travel app shown on two phones', caption: 'Greenbacks' }] })],
     journey: { title: 'From product interest\nto a useful sales conversation.', intro: 'Make the next step easy for the customer, and useful for the team who responds.',
       steps: [['01 / CUSTOMER', 'Find the right product', 'Clear categories, useful specifications and the information needed to choose.'],
         ['02 / EXPERIENCE', 'Build a quote request', 'Capture product options, quantities and the context your sales team needs.'],
@@ -188,7 +192,7 @@ const services = [
     primary: L('Discuss your integration', LINKS.contact), secondary: L('Explore scoped projects', LINKS.projects),
     note: 'Scoped integration projects from R50,000, or an agreed workstream within a broader partnership.',
     priority: ['Start with the handover\nthat keeps breaking.', 'Duplicate capture, missing enquiries, slow quote preparation and inconsistent order updates are useful starting points. Define the process, the systems involved and the person who owns the outcome.'],
-    before: [s('logos', { eyebrow: 'TECHNOLOGIES', title: 'Experienced integration.', style: 'grid', items: [] })],
+    before: [s('logos', { eyebrow: 'TECHNOLOGIES', title: 'Experienced integration.', style: 'tiles', items: TECH_TILES })],
     capTitle: 'Connect the work across your business.',
     caps: [
       ['01 / SCOPED CAPABILITY', 'Enquiries and sales', 'Connect forms, CRM records, assignment, notifications and follow-up so enquiries reach the right team with useful context.'],
@@ -232,8 +236,10 @@ const services = [
     primary: L('Assess an AI workflow', LINKS.contact), secondary: L('Explore integration', LINKS.systems),
     note: 'Qualifying pilots and projects from R50,000. Scope and specialist requirements are confirmed through feasibility assessment.',
     priority: ['Start with a task\nyou can evaluate.', 'A useful starting point has a clear owner, repeatable inputs and an outcome your team can judge. Examples include finding approved information, extracting details from documents or preparing a response for review.'],
-    before: [s('logos', { eyebrow: 'TECHNOLOGIES', title: 'Real MCP action in the apps that run your business.', style: 'grid',
-      items: ['Claude', 'Cursor', 'ChatGPT', 'Gemini', 'Email', 'Calendars', 'Agents', 'Chatbots', 'Analytics', 'Research', '200+ More'].map((label) => ({ label, image: '' })) })],
+    before: [s('logos', { eyebrow: 'TECHNOLOGIES', title: 'Real MCP action in the apps\nthat run your business.', style: 'hub',
+      leftCount: '4', centerLabel: 'AI MCP', centerImage: '/assets/figma/cube-corner.png',
+      items: [['Claude', 'claude'], ['Cursor', 'cursor'], ['ChatGPT', 'chatgpt'], ['Gemini', 'gemini'], ['Email', 'email'], ['Calendars', 'calendars'], ['Agents', 'agents'],
+        ['Chatbots', 'chatbots'], ['Analytics', 'analytics'], ['Research', 'research'], ['200+ More', 'more']].map(([label, f]) => ({ label, image: `/assets/figma/hub/${f}.png` })) })],
     capTitle: 'Match the capability to the task.',
     caps: [
       ['01 / SCOPED CAPABILITY', 'Generative AI and language models', 'Connect models from OpenAI or Anthropic to approved knowledge and drafting workflows, with source context and review where required.'],

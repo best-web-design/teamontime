@@ -18,7 +18,7 @@ const FORMS = {
       placeholder: 'Tell us about your challenge, relevant systems and any target dates.', help: 'Please leave out passwords and sensitive customer information.' },
   ]],
   audit: [
-    { title: 'Business Information', helper: 'Tell us about the business behind the website.', fields: [
+    { tab: 'Business', title: 'Business Information', helper: 'Tell us about the business behind the website.', fields: [
       { name: 'company', label: 'Business name', required: true, autoComplete: 'organization', placeholder: 'Your registered or trading name' },
       { name: 'website', label: 'Website URL', type: 'url', required: true, placeholder: 'https://yourbusiness.co.za' },
       { name: 'industry', label: 'Industry', type: 'select', required: true, options: INDUSTRY, placeholder: 'Choose your industry' },
@@ -26,14 +26,14 @@ const FORMS = {
       { name: 'marketingOwner', label: 'Marketing owner', type: 'select', required: true, options: ['Dedicated marketing manager', 'Marketing team', 'Founder / director', 'External agency', 'No one yet'], placeholder: 'Who leads marketing?' },
       { name: 'location', label: 'Location', placeholder: 'City or region (optional)' },
     ] },
-    { title: 'Business Requirements', helper: 'Focus the review on the outcome that matters most.', fields: [
+    { tab: 'Requirements', title: 'Business Requirements', helper: 'Focus the review on the outcome that matters most.', fields: [
       { name: 'goal', label: 'Primary goal', type: 'select', required: true, options: ['More qualified enquiries', 'More direct bookings', 'More online sales', 'Less manual work', 'Better measurement'], placeholder: 'Choose your main priority' },
       { name: 'area', label: 'Area to improve', type: 'select', required: true, options: ['Strategy, UX & Conversion', 'Websites & Digital Products', 'Systems Integration & Automation', 'AI Integration', 'Growth Marketing & CRO', 'Dynamic QR Experiences', 'Not sure'], placeholder: 'Select a service area' },
       { name: 'challenge', label: 'What is holding you back?', type: 'textarea', required: true, full: true, placeholder: 'Tell us about the challenge, who it affects and the outcome you want.', help: 'Please leave out passwords and sensitive customer data.' },
       { name: 'platforms', label: 'Current platforms', placeholder: 'Website, CRM, booking or ERP tools' },
       { name: 'budget', label: 'Potential project budget', type: 'select', options: ['R50,000 – R100,000', 'R100,000 – R250,000', 'R250,000+', 'Not sure yet'], placeholder: 'Choose a range (optional)', help: 'Paid projects start at R50,000.' },
     ] },
-    { title: 'Contact Information', helper: 'Who should we speak to about the findings?', fields: [
+    { tab: 'Contact', title: 'Contact Information', helper: 'Who should we speak to about the findings?', fields: [
       { name: 'name', label: 'Full name', required: true, autoComplete: 'name', placeholder: 'Your first and last name' },
       { name: 'role', label: 'Role', required: true, autoComplete: 'organization-title', placeholder: 'Your role in the business' },
       { name: 'email', label: 'Work email', type: 'email', required: true, autoComplete: 'email', placeholder: 'you@company.co.za' },
@@ -112,18 +112,18 @@ export default function CmsForm({ form = 'contact', submitLabel, privacy, succes
     <form className="form" onSubmit={onSubmit}>
       {multi && (
         <>
-          <ol className="form-steps">{steps.map((s, i) => <li key={i} className={i === step ? 'on' : i < step ? 'done' : ''}>{String(i + 1).padStart(2, '0')}  {s.title.split(' ')[1]?.toUpperCase() || s.title}</li>)}</ol>
-          <div><h3 className="h3">{cur.title}</h3><p className="small">{cur.helper}</p></div>
+          <ol className="form-tabs">{steps.map((s, i) => <li key={i} className={i === step ? 'on' : i < step ? 'done' : ''} aria-current={i === step ? 'step' : undefined}>{String(i + 1).padStart(2, '0')}  {(s.tab || s.title).toUpperCase()}</li>)}</ol>
+          <div className="form-head"><h3 className="h3">{cur.title}</h3><p className="body">{cur.helper}</p></div>
         </>
       )}
       <div className="form-grid">{cur.fields.map((f) => <Field key={f.name} f={f} form={form} values={values} setValues={setValues} />)}</div>
       <input type="text" name="company_website" tabIndex={-1} autoComplete="off" aria-hidden style={{ position: 'absolute', left: '-9999px' }} />
       {last && privacy && <p className="small">{privacy}</p>}
       {state.error && <p className="form-msg err" role="alert">{state.error}</p>}
-      <div className="btn-row" style={{ justifyContent: 'space-between' }}>
-        {multi && step > 0 ? <button type="button" className="btn btn-outline btn-back" onClick={() => setStep(step - 1)}>← Back</button> : <span />}
-        {multi && <span className="small" style={{ alignSelf: 'center' }}>Step {step + 1} of {steps.length}</span>}
-        <button className="btn btn-primary" disabled={state.status === 'sending'}>
+      <div className={multi ? 'form-actions multi' : 'form-actions'}>
+        {multi && <span className="small form-step-count">Step {step + 1} of {steps.length}</span>}
+        {multi && step > 0 && <button type="button" className="btn btn-outline btn-back" onClick={() => setStep(step - 1)}>← Back</button>}
+        <button className={`btn btn-primary${multi ? ' btn-wide' : ''}`} disabled={state.status === 'sending'}>
           {state.status === 'sending' ? 'Sending…' : !last ? 'Continue' : submitLabel || 'Send'}
         </button>
       </div>

@@ -7,7 +7,7 @@ const express = require('express');
 const next = require('next');
 const bcrypt = require('bcryptjs');
 const { store } = require('./server/db');
-const { seed, fillImages } = require('./server/seed');
+const { seed, fillImages, updateLayout } = require('./server/seed');
 
 const dev = process.env.NODE_ENV !== 'production';
 const port = Number(process.env.PORT || 3000);
@@ -19,6 +19,7 @@ async function main() {
     await seed();
   }
   await fillImages(); // one-off: adds the Figma images to a database seeded before they existed
+  await updateLayout(); // one-off per LAYOUT_VERSION: applies seed design updates, keeps admin edits
   // First admin account comes from .env; change the password in Admin → Dashboard afterwards.
   const { ADMIN_EMAIL, ADMIN_PASSWORD } = process.env;
   if ((await store.users.count()) === 0 && ADMIN_EMAIL && ADMIN_PASSWORD) {
