@@ -143,7 +143,7 @@ function collection(table, shape, order) {
 
 const store = {
   pages: collection('pages', PAGE, 'sort, id'),
-  posts: collection('posts', POST, 'published_at DESC, id DESC'),
+  posts: collection('posts', POST, 'published_at DESC, id ASC'),
   settings: {
     async get() {
       const [rows] = await db().query("SELECT doc FROM settings WHERE k = 'site'");

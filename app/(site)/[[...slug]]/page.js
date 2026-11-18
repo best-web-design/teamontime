@@ -20,6 +20,7 @@ export default async function CmsPage({ params }) {
   return (
     <>
       <JsonLd data={buildJsonLd(page, s, toPath(slug))} />
+      {slug === 'home' && <span hidden className="is-home" />}
       <Sections sections={page.sections} />
     </>
   );

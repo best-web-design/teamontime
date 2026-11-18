@@ -9,23 +9,23 @@ export default function Integrations({ items, help }) {
   const [tab, setTab] = useState('All');
   const shown = tab === 'All' ? items : items.filter((it) => has(it, tab));
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 32 }}>
       {help && <p className="small">{help}</p>}
       <div className="btn-row" style={{ justifyContent: 'flex-start' }} role="group" aria-label="Filter by discipline">
         {['All', ...TABS].map((t) => (
-          <button key={t} className="pill" aria-pressed={t === tab} style={t === tab ? { background: 'var(--primary)' } : undefined} onClick={() => setTab(t)}>
+          <button key={t} className={`pill filter-tab${t === tab ? ' on' : ''}`} aria-pressed={t === tab} onClick={() => setTab(t)}>
             {t} ({t === 'All' ? items.length : items.filter((it) => has(it, t)).length})
           </button>
         ))}
       </div>
-      <p className="small" aria-live="polite">{shown.length} integration examples</p>
+      <p className="small" aria-live="polite">{shown.length} integration examples{tab === 'All' ? '  ·  Explore all four disciplines' : `  ·  ${tab}`}</p>
       <div className="grid-3">
         {shown.map((it, i) => (
-          <article className="step" key={i} style={{ minHeight: 0 }}>
+          <article className="int-card" key={i}>
             <p className="label">{it.code}</p>
             <TechLogos logos={it.logos?.length ? it.logos : it.logo ? [{ image: it.logo, alt: '' }] : []} />
             <h3 className="h3">{it.title}</h3>
-            {it.platforms && <p className="action" style={{ margin: 0, color: 'var(--text)' }}>{it.platforms}</p>}
+            {it.platforms && <p className="small">{it.platforms}</p>}
             {it.outcome && <p className="body">{it.outcome}</p>}
             {it.fit && <p className="small">{it.fit}</p>}
             {it.measure && <p className="label" style={{ textTransform: 'none' }}>{it.measure}</p>}

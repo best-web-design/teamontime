@@ -14,7 +14,7 @@ const GROUPS = {
     { name: 'favicon', type: 'image' },
     { name: 'notifyEmail', type: 'text', label: 'Send form submissions to', help: 'Needs SMTP settings in the server .env' },
     { name: 'contact', type: 'group', fields: [{ name: 'phone', type: 'text' }, { name: 'email', type: 'text' }, { name: 'address', type: 'textarea' }] },
-    { name: 'whatsapp', type: 'group', label: 'WhatsApp button', fields: [{ name: 'number', type: 'text', help: 'International format, e.g. +27 82 000 0000. Empty hides the button.' }, { name: 'label', type: 'text' }] },
+    { name: 'whatsapp', type: 'group', label: 'WhatsApp button', fields: [{ name: 'number', type: 'text', help: 'International format, e.g. +27 82 000 0000. Empty = the button opens the Contact page.' }, { name: 'label', type: 'text' }, { name: 'hidden', type: 'bool', label: 'Hide the button' }] },
     { name: 'socials', type: 'list', label: 'Social profiles (used in schema sameAs)', fields: link },
   ],
   SEO: [

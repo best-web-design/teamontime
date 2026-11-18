@@ -145,10 +145,10 @@ const R = {
         </section>
       );
     }
-    const filled = d.style === 'filled';
+    const filled = d.style === 'filled', compact = d.style === 'compact';
     return (
       <section className="section"><Head d={d} />
-        <div className={`${d.columns ? cols(d.columns) : 'grid-2'}${filled ? ' cards-filled' : ''}`}>{(d.items || []).map((it, i) => <Card key={i} it={it} cls={filled ? 'card filled' : 'card'} />)}</div>
+        <div className={`${d.columns ? cols(d.columns) : 'grid-2'}${filled ? ' cards-filled' : ''}${compact ? ' cards-compact' : ''}`}>{(d.items || []).map((it, i) => <Card key={i} it={it} cls={filled ? 'card filled' : 'card'} />)}</div>
         {d.note && (filled ? <CardsNote text={d.note} /> : <p className="small">{d.note}</p>)}
         {d.cta?.label && <div><Btn link={d.cta} variant="outline" /></div>}
       </section>
@@ -213,6 +213,7 @@ const R = {
     const glass = d.style === 'glass';
     const inner = (
       <>
+        {d.art && <img className="journey-art" src={d.art} alt="" loading="lazy" />}
         <Head d={d} />
         <div className={grid((d.steps || []).length)}>{(d.steps || []).map((it, i) => <Card key={i} it={it} cls={glass ? 'step step-auto' : 'step'} />)}</div>
         {d.boundary && <p className="label" style={{ textTransform: 'none' }}>{d.boundary}</p>}
@@ -333,7 +334,7 @@ const R = {
   ),
   cta: (d) => (
     <section className="section">
-      <div className="cta-panel">
+      <div className={`cta-panel${d.style === 'editorial' ? ' cta-editorial' : ''}${d.tone === 'light' ? ' cta-light' : ''}`}>
         {d.eyebrow && <p className="label">{d.eyebrow}</p>}
         <h2 className={d.size === 'display' ? 'display' : 'h2'}><Lines text={d.title} /></h2>
         {d.lead && <p className="lead"><Lines text={d.lead} /></p>}
@@ -398,7 +399,7 @@ const R = {
     if (d.form === 'newsletter') {
       return (
         <section className="section">
-          <div className="form-card center" style={{ display: 'flex', flexDirection: 'column', gap: 32, alignItems: 'center' }}>
+          <div className="form-card center form-dark" style={{ display: 'flex', flexDirection: 'column', gap: 32, alignItems: 'center' }}>
             <h2 className="h2">{d.title}</h2>{d.intro && <p className="lead" style={{ maxWidth: 760 }}><Lines text={d.intro} /></p>}
             <div style={{ width: '100%', maxWidth: 760, textAlign: 'left' }}><CmsForm form="newsletter" submitLabel={d.submitLabel} privacy={d.privacy} success={d.success} /></div>
           </div>
@@ -431,7 +432,7 @@ const R = {
     );
   },
   newsList: async (d) => (
-    <section className="section"><Head d={d} /><NewsList posts={await getPosts()} /></section>
+    <section className="section"><Head d={d} /><NewsList posts={await getPosts()} allLabel={d.allLabel || 'All articles'} /></section>
   ),
 };
 

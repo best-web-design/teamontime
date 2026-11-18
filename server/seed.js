@@ -66,7 +66,7 @@ async function fillImages({ log = console.log } = {}) {
 // Design updates: brings seeded pages and settings up to the latest seed-data without losing admin edits.
 // previous.json is the seed-data as it was before this update. A value still equal to that old seed value
 // was never edited in admin, so it takes the new value; anything changed in admin is kept as it is.
-const LAYOUT_VERSION = 1;
+const LAYOUT_VERSION = 2;
 const same = (a, b) => JSON.stringify(a) === JSON.stringify(b);
 const isObj = (v) => v && typeof v === 'object' && !Array.isArray(v);
 
@@ -107,19 +107,54 @@ function mergeSections(cur, prev, next) {
   return changed;
 }
 
+// Seed snapshots by layout version: SNAPSHOTS[v] is the seed-data shipped with layout version v.
+// The current seed-data is the latest version. Each step merges snapshot v -> v+1 into the database.
+const SNAPSHOTS = ['previous.json', 'previous-v1.json'];
+
 async function updateLayout({ log = console.log } = {}) {
   const settings = await store.settings.get();
-  if ((settings._layoutVersion || 0) >= LAYOUT_VERSION) return;
-  const prev = require(path.join(dir, 'previous.json'));
-  merge3(settings, prev.settings, require(path.join(dir, 'settings.js')));
+  const from = settings._layoutVersion || 0;
+  if (from >= LAYOUT_VERSION) return;
+  const current = {
+    settings: require(path.join(dir, 'settings.js')),
+    pages: Object.fromEntries(require(path.join(dir, 'pages.js')).map((p) => [p.slug, p])),
+    posts: Object.fromEntries(require(path.join(dir, 'posts.js')).map((p) => [p.slug, p])),
+  };
+  const snap = (v) => (v >= SNAPSHOTS.length ? current : require(path.join(dir, SNAPSHOTS[v])));
+  const pages = new Map(), posts = new Map();
+  for (let v = from; v < LAYOUT_VERSION; v++) {
+    const prev = snap(v), next = snap(v + 1);
+    merge3(settings, prev.settings, next.settings);
+    for (const [slug, src] of Object.entries(next.pages)) {
+      const old = prev.pages[slug];
+      if (!old) continue;
+      if (!pages.has(slug)) pages.set(slug, { doc: await store.pages.bySlug(slug, { publishedOnly: false }), changed: false });
+      const e = pages.get(slug);
+      if (e.doc && mergeSections(e.doc, old.sections || [], src.sections || [])) e.changed = true;
+    }
+    for (const [slug, src] of Object.entries(next.posts || {})) {
+      const old = (prev.posts || {})[slug];
+      if (!old) continue;
+      if (!posts.has(slug)) posts.set(slug, { doc: await store.posts.bySlug(slug, { publishedOnly: false }), changed: false });
+      const e = posts.get(slug);
+      if (!e.doc) continue;
+      const { sections: ns, publishedAt: _n, ...nf } = src, { sections: os, publishedAt: _o, ...of } = old;
+      if (merge3(e.doc, of, nf)) e.changed = true;
+      if (mergeSections(e.doc, os || [], ns || [])) e.changed = true;
+    }
+  }
+  if (from < 2) {
+    // v2: case studies follow the Figma order (dates only change on the seeded previews)
+    for (const src of require(path.join(dir, 'posts.js')).filter((x) => x.kind === 'case-study' && x.publishedAt)) {
+      if (!posts.has(src.slug)) posts.set(src.slug, { doc: await store.posts.bySlug(src.slug, { publishedOnly: false }), changed: false });
+      const e = posts.get(src.slug);
+      if (e.doc) { e.doc.publishedAt = src.publishedAt; e.changed = true; }
+    }
+  }
   settings._layoutVersion = LAYOUT_VERSION;
   await store.settings.set(settings);
-  for (const src of require(path.join(dir, 'pages.js'))) {
-    const cur = await store.pages.bySlug(src.slug, { publishedOnly: false });
-    const old = prev.pages[src.slug];
-    if (!cur || !old) continue;
-    if (mergeSections(cur, old.sections || [], src.sections || [])) { await store.pages.update(cur._id, cur); log(`design updated: ${src.slug}`); }
-  }
+  for (const [slug, e] of pages) if (e.changed) { await store.pages.update(e.doc._id, e.doc); log(`design updated: ${slug}`); }
+  for (const [slug, e] of posts) if (e.changed) { await store.posts.update(e.doc._id, e.doc); log(`post updated: ${slug}`); }
 }
 
 module.exports = { seed, fillImages, fill, merge3, mergeSections, updateLayout };
