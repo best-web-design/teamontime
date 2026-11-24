@@ -18,7 +18,7 @@ const caseStudies = (eyebrow, title, intro) => s('caseStudies', { eyebrow, title
 const seo = (metaTitle, metaDescription) => ({ metaTitle, metaDescription });
 
 // Shared engagement cards (Figma "BWD / Engagement card", project + partnership variants).
-const engagement = (intro, projectValue = 'From R50,000', opts = {}) => s('engagement', {
+const engagement = (intro, projectValue = 'From R29,990', opts = {}) => s('engagement', {
   ...(opts.style ? { style: opts.style } : {}),
   eyebrow: opts.eyebrow || 'A CLEAR COMMERCIAL START',
   title: opts.title || 'Choose the right engagement.',

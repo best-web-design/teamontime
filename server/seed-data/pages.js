@@ -5,12 +5,12 @@ const { L, LINKS, s, hero, cards, faq, cta, steps3, caseStudies, engagement, ser
 const home = {
   slug: 'home', title: 'Home', order: 0,
   seo: seo('Best Web Design | Connected digital delivery in South Africa',
-    'We connect design, development, integration and marketing around the priorities that matter to your business. Projects from R50,000 and 12-month partnerships.'),
+    'We connect design, development, integration and marketing around the priorities that matter to your business. Projects from R29,990 and 12-month partnerships.'),
   sections: [
     hero('CONNECTED DIGITAL DELIVERY  /  SOUTH AFRICA', 'Better connected.\nBuilt to perform.',
       'We connect design, development, integration and marketing\naround the priorities that matter to your business.',
       L('Scope a project', LINKS.contact), L('Explore a partnership', LINKS.partnership),
-      'Projects from R50,000  ·  12-month partnerships  ·  Focused 90-day rollouts'),
+      'Projects from R29,990  ·  12-month partnerships  ·  Focused 90-day rollouts'),
     s('logos', { style: 'marquee', items: [['DStv', 'dstv'], ['Perfect Hideaways', 'perfect-hideaways'], ['Kinga Global', 'kinga'], ['Nedbank', 'nedbank'], ['Clicks', 'clicks'], ['Bogart Man', 'bogart-man'], ['Natural Living Spa & Wellness Centre', 'natural-living']]
       .map(([label, f]) => ({ label, image: `/assets/figma/client-${f}.png` })) }),
     s('cards', {
@@ -50,7 +50,7 @@ const home = {
       eyebrow: 'YOUR NEXT MOVE', title: 'Two ways to\nmove forward.',
       intro: 'Choose a defined project or a continuing partnership. Both start with a clear business priority.',
       items: [
-        { kicker: '01 / SCOPED PROJECTS', title: 'A clear outcome.\nA defined scope.', value: 'From R50,000',
+        { kicker: '01 / SCOPED PROJECTS', title: 'A clear outcome.\nA defined scope.', value: 'From R29,990',
           body: 'For a specific business need, a platform rebuild or a connected workflow.',
           bullets: 'Requirements and priorities agreed upfront\nDeliverables, milestones and acceptance criteria\nThe right mix of skills and integrations',
           cta: L('Discuss your project', LINKS.projects), note: 'Final investment follows the agreed scope. VAT treatment is confirmed in your proposal.' },
@@ -84,7 +84,7 @@ const home = {
     }),
     faq('BEFORE WE BEGIN', 'A few useful answers.', [
       ['Do we need every service?', 'No. We choose the capabilities needed for your priority. A focused scope can use one service when the supporting foundations already exist.'],
-      ['What is the minimum project investment?', 'Projects start at R50,000. The final scope, investment and VAT treatment are confirmed in your proposal.'],
+      ['What is the minimum project investment?', 'Projects start at R29,990. The final scope, investment and VAT treatment are confirmed in your proposal.'],
       ['Is the 90-day rollout a trial?', 'No. It is the opening delivery cycle within a 12-month partnership. We review progress and agree the priorities for each following quarter.'],
       ['Can you work with our existing systems and team?', 'Yes. We assess your current platforms, workflows and team responsibilities, then scope the changes and integrations that add value.'],
       ['What kind of business is the best fit for BWD?', 'We work best with established businesses that have a clear commercial priority and someone accountable for decisions. Our partnerships are especially suited to teams of 10 or more with dedicated marketing ownership. A defined project can be assessed on scope, readiness and investment.'],
@@ -93,18 +93,18 @@ const home = {
       ['How will we know whether the work is performing?', 'We agree the starting position, KPI definitions, data sources and who owns each measure. Depending on the business, useful measures may include qualified enquiries, direct bookings, completed purchases or time saved. Reporting connects delivery to these outcomes and explains what needs attention.'],
     ]),
     cta('LET’S DEFINE YOUR NEXT MOVE', 'What needs to\nwork better?', 'Tell us the business priority. We’ll help shape the right scope.',
-      L('Scope a project', LINKS.contact), 'Projects from R50,000  /  12-month partnerships with a focused first 90 days', L('Explore a partnership', LINKS.partnership), { size: 'display' }),
+      L('Scope a project', LINKS.contact), 'Projects from R29,990  /  12-month partnerships with a focused first 90 days', L('Explore a partnership', LINKS.partnership), { size: 'display' }),
   ],
 };
 
 const services = [
   service({
     slug: 'services/strategy-ux-conversion', title: 'Strategy, UX & Conversion', order: 10,
-    seo: seo('Strategy, UX & Conversion Audits | Best Web Design', 'Find the friction in your customer journey. Evidence-led UX audits and a prioritised delivery plan for enquiries, checkout and bookings. From R50,000.'),
+    seo: seo('Strategy, UX & Conversion Audits | Best Web Design', 'Find the friction in your customer journey. Evidence-led UX audits and a prioritised delivery plan for enquiries, checkout and bookings. From R29,990.'),
     crumb: 'HOME  /  SERVICES  /  01 — STRATEGY, UX & CONVERSION', h1: 'Find the friction.\nFocus the next move.',
     lead: 'When customers hesitate, abandon a form or struggle to buy, the cause is rarely a single screen.\nWe examine the journey, the supporting evidence and the systems behind it, then turn the findings into a prioritised delivery plan.',
     primary: L('Discuss your priority journey', LINKS.contact), secondary: L('Explore scoped projects', LINKS.projects),
-    note: 'Discovery within a qualifying project or partnership. Standalone engagements start at R50,000.',
+    note: 'Discovery within a qualifying project or partnership. Standalone engagements start at R29,990.',
     priority: ['Find the friction before\ncommitting to the fix.', 'This is for teams with an existing website or product, a meaningful business goal and access to the people who own it. Start with one important journey: an enquiry, checkout, booking, onboarding flow or customer task.'],
     priorityImage: '/assets/figma/strategy-pyramid.webp',
     priorityImageAlt: 'Glass pyramid with four tiers labelled Vision, Goals, Plans and Execution',
@@ -127,7 +127,7 @@ const services = [
     scope: { title: 'What the scope can include.', body: 'Journey maps, an evidence register, prioritised findings, annotated screens, prototypes and a 30/60/90-day improvement roadmap. The agreed scope identifies which research methods and implementation work are included.' },
     measure: { title: 'Measure the task that matters.', kpis: ['Successful task completion', 'Qualified enquiry rate', 'Checkout or booking completion'],
       detail: '**Depending on the journey:** successful task completion, qualified enquiry rate, checkout completion, booking completion or support demand. Findings remain hypotheses where evidence is limited.' },
-    engagement: { intro: 'A focused audit can be a standalone project from R50,000, or discovery within a broader build or partnership.', value: 'From R39,990' },
+    engagement: { intro: 'A focused audit can be a standalone project from R29,990, or discovery within a broader build or partnership.', value: 'From R29,990' },
     faqs: [
       ['What if our analytics are incomplete?', 'We identify the gaps and agree the measurement work needed. Expert observations can still guide priorities, but they are labelled separately from measured behaviour.'],
       ['Will the audit include implementation?', 'Only where it is included in the agreed scope. You will know which recommendations BWD will deliver and which remain in the backlog.'],
@@ -136,17 +136,17 @@ const services = [
       ['Why does our website get traffic but few enquiries?', 'Possible causes include unclear positioning, weak trust signals, confusing forms, slow mobile journeys or poor traffic quality. We review the path from arrival to qualified enquiry and the follow-up process. The aim is to identify the constraint before spending more on acquisition.'],
       ['Can you improve online booking or checkout conversion?', 'Yes. We can examine service selection, availability, product information, checkout steps and confirmation journeys. We combine behavioural evidence with customer and team input, then prioritise changes against booking completion or purchase outcomes where reliable tracking is available.'],
       ['How do you decide which website improvements come first?', 'We compare expected business impact, evidence, delivery effort and dependencies. The agreed roadmap separates immediate fixes from work that needs research, content, integration or development first. Your team helps confirm operational constraints and approval priorities.'],
-      ['How much does a strategy and UX project cost?', 'Qualifying projects start at R50,000. The proposal depends on the journeys, research, analytics access, workshops and implementation included. A free initial review can help identify the next discussion, but it does not replace a scoped research or UX engagement.'],
+      ['How much does a strategy and UX project cost?', 'Qualifying projects start at R29,990. The proposal depends on the journeys, research, analytics access, workshops and implementation included. A free initial review can help identify the next discussion, but it does not replace a scoped research or UX engagement.'],
     ],
     closing: { title: 'Choose the journey\nworth improving first.', lead: 'Tell us where customers or staff get stuck, what the task is worth to the business and what evidence you already have.' },
   }),
   service({
     slug: 'services/websites-digital-products', title: 'Websites & Digital Products', order: 11,
-    seo: seo('Website Design & Development | Best Web Design', 'Business websites, commerce, portals and digital products built around how you sell, with CRM, payment and stock integrations. Projects from R50,000.'),
+    seo: seo('Website Design & Development | Best Web Design', 'Business websites, commerce, portals and digital products built around how you sell, with CRM, payment and stock integrations. Projects from R29,990.'),
     crumb: 'HOME  /  SERVICES  /  02 — WEBSITES & DIGITAL PRODUCTS', h1: 'Build for the way\nyour business sells.',
     lead: 'Your website should help customers make decisions and help your team manage what happens next. We combine experience design, development and the right integrations to create a platform around your requirements.',
     primary: L('Scope your website project', LINKS.contact), secondary: L('Explore integration', LINKS.systems),
-    note: 'Projects from R50,000. Final scope and pricing depend on the required journeys, functionality and integrations.',
+    note: 'Projects from R29,990. Final scope and pricing depend on the required journeys, functionality and integrations.',
     priority: ['A platform with\na clear job to do.', 'Whether you need a more effective enquiry journey, a connected online store or a customer-facing tool, start with the task it must support. We prioritise the first release around that task and identify what can follow.'],
     capTitle: 'Choose the experience your business needs.',
     caps: [
@@ -179,10 +179,10 @@ const services = [
     scope: { title: 'Know what is included.', body: 'The proposal identifies design and build deliverables, content responsibilities, integration depth, migration work, testing and launch support. Hosting, licences, maintenance and future improvements are itemised where applicable.' },
     measure: { title: 'Judge the platform\nby its purpose.', kpis: ['Valid enquiries or completed orders', 'Booking or checkout completion', 'Successful system handover'],
       detail: 'Agree acceptance tests before launch. After launch, review relevant outcomes such as valid enquiries, completed orders, booking completion and successful data transfer. A new design alone is not a revenue guarantee.' },
-    engagement: { intro: 'A defined first release starts at R50,000. Journeys, functionality, content, migration and integration depth determine the final scope.', value: 'From R49,990', style: 'solid' },
+    engagement: { intro: 'A defined first release starts at R29,990. Journeys, functionality, content, migration and integration depth determine the final scope.', value: 'From R29,990', style: 'solid' },
     faqs: [
       ['Can you improve our existing website?', 'Yes, where the current platform can support the requirements. We assess whether targeted improvement or a rebuild makes commercial and technical sense.'],
-      ['What changes the price?', 'Journey complexity, content, functionality, integrations, migration and testing needs. The R50,000 minimum is an entry threshold, not a price for every type of build.'],
+      ['What changes the price?', 'Journey complexity, content, functionality, integrations, migration and testing needs. The R29,990 minimum is an entry threshold, not a price for every type of build.'],
       ['What happens after launch?', 'The agreement defines handover, defect support and any ongoing maintenance or optimisation. Continuing work can be scoped separately or included in a suitable partnership.'],
       ['Should we use WordPress, Shopify or a custom build?', 'The best platform depends on your content, commerce, integrations, ownership needs and future roadmap. We compare suitable options against those requirements and the total cost of operating them. Existing WordPress or WooCommerce sites may be improved when the foundation can support the scope.'],
       ['Can our website connect to CRM, payments and stock systems?', 'Yes, where the platforms support the required connections. We confirm APIs, licences, data rules, permissions and failure handling before quoting. These integrations are planned with the website journey so the work covers what happens after an enquiry, order or booking.'],
@@ -195,11 +195,11 @@ const services = [
   }),
   service({
     slug: 'services/systems-integration-automation', title: 'Systems Integration & Automation', order: 12,
-    seo: seo('Systems Integration & Automation | Best Web Design', 'Connect your website, CRM and operating systems. We map the workflow, build reliable integrations and make exceptions visible. Scoped projects from R50,000.'),
+    seo: seo('Systems Integration & Automation | Best Web Design', 'Connect your website, CRM and operating systems. We map the workflow, build reliable integrations and make exceptions visible. Scoped projects from R29,990.'),
     crumb: 'HOME  /  SERVICES  /  03 — SYSTEMS INTEGRATION & AUTOMATION', h1: 'Make your systems\nwork together.',
     lead: 'When information stops between your website, CRM and operating systems, people fill the gaps by hand. We map the workflow, connect the right systems and make exceptions visible so your team can act on reliable information.',
     primary: L('Discuss your integration', LINKS.contact), secondary: L('Explore scoped projects', LINKS.projects),
-    note: 'Scoped integration projects from R50,000, or an agreed workstream within a broader partnership.',
+    note: 'Scoped integration projects from R29,990, or an agreed workstream within a broader partnership.',
     priority: ['Start with the handover\nthat keeps breaking.', 'Duplicate capture, missing enquiries, slow quote preparation and inconsistent order updates are useful starting points. Define the process, the systems involved and the person who owns the outcome.'],
     before: [s('logos', { eyebrow: 'TECHNOLOGIES', title: 'Experienced integration.', style: 'tiles', items: TECH_TILES })],
     capTitle: 'Connect the work across your business.',
@@ -223,7 +223,7 @@ const services = [
     scope: { title: 'A connection with clear responsibilities.', body: 'The scope defines systems, data fields, direction of travel, expected volumes, access, testing and support. Vendor fees, legacy limitations and custom work are identified before implementation. Each integration has an accountable owner.' },
     measure: { title: 'Measure reliability and business usefulness.', kpis: ['Successful transfers and exceptions', 'Duplicate or missing records', 'Manual handling and recovery time'],
       detail: 'Track successful transfers, duplicate or missing records, exception recovery and time spent handling the task. Connect these measures to the relevant sales, service or operational objective.' },
-    engagement: { intro: 'Start with one high-value workflow. Scoped integration projects begin at R50,000; a broader project or partnership can include an agreed integration workstream.', value: 'From R29,990', style: 'solid' },
+    engagement: { intro: 'Start with one high-value workflow. Scoped integration projects begin at R29,990; a broader project or partnership can include an agreed integration workstream.', value: 'From R29,990', style: 'solid' },
     faqs: [
       ['Can you connect any system?', 'Feasibility depends on the available APIs, supported connectors, access permissions and vendor restrictions. We assess these before committing to the solution.'],
       ['What happens if a connection fails?', 'The design includes the agreed detection, alerting and recovery process. Support hours and response commitments are defined in the agreement.'],
@@ -239,11 +239,11 @@ const services = [
   }),
   service({
     slug: 'services/ai-integration', title: 'AI Integration & Intelligent Workflows', order: 13,
-    seo: seo('AI Integration & Intelligent Workflows | Best Web Design', 'Put AI to work with people in control. Scoped AI assistants, document workflows and supervised agents with evaluation and approval gates. Pilots from R50,000.'),
+    seo: seo('AI Integration & Intelligent Workflows | Best Web Design', 'Put AI to work with people in control. Scoped AI assistants, document workflows and supervised agents with evaluation and approval gates. Pilots from R29,990.'),
     crumb: 'HOME  /  SERVICES  /  04 — AI INTEGRATION & INTELLIGENT WORKFLOWS', h1: 'Put AI to work.\nKeep people in control.',
     lead: 'Choose a useful task, define what a good result looks like and connect the workflow to your business. We scope AI integration around data readiness, measurable quality, operating cost and the decisions that stay with your team.',
     primary: L('Assess an AI workflow', LINKS.contact), secondary: L('Explore integration', LINKS.systems),
-    note: 'Qualifying pilots and projects from R50,000. Scope and specialist requirements are confirmed through feasibility assessment.',
+    note: 'Qualifying pilots and projects from R29,990. Scope and specialist requirements are confirmed through feasibility assessment.',
     priority: ['Start with a task\nyou can evaluate.', 'A useful starting point has a clear owner, repeatable inputs and an outcome your team can judge. Examples include finding approved information, extracting details from documents or preparing a response for review.'],
     before: [s('logos', { eyebrow: 'TECHNOLOGIES', title: 'Real MCP action in the apps\nthat run your business.', style: 'hub',
       leftCount: '4', centerLabel: 'AI MCP', centerImage: '/assets/figma/cube-corner.png',
@@ -271,7 +271,7 @@ const services = [
     scope: { title: 'Human control is part of the design.', body: 'Define what the system may access, which actions it may take and when approval is required. Model usage, hosting, software subscriptions and ongoing evaluation are identified separately in the commercial scope.' },
     measure: { title: 'Measure useful work, including the review effort.', kpis: ['Task success and output quality', 'Total handling time, including review', 'Exceptions and cost per completed task'],
       detail: 'Evaluate task success, output quality, exceptions, total handling time and cost per completed task. Compare against the current process before expanding the use case.' },
-    engagement: { intro: 'Qualifying pilots and projects start at R50,000. Feasibility, data readiness and delivery capability are confirmed before committing to a production rollout.', value: 'From R39,990', style: 'solid' },
+    engagement: { intro: 'Qualifying pilots and projects start at R29,990. Feasibility, data readiness and delivery capability are confirmed before committing to a production rollout.', value: 'From R29,990', style: 'solid' },
     faqs: [
       ['Will our information train a public model?', 'Data handling depends on the selected provider, product and configuration. These requirements are reviewed before any production data is connected.'],
       ['Can an agent act without approval?', 'Only within the permissions and boundaries agreed for that workflow. Higher-impact actions require explicit controls and an appropriate approval process.'],
@@ -280,7 +280,7 @@ const services = [
       ['What is the difference between an AI chatbot and an AI agent?', 'A chatbot mainly handles a conversation. An agent can take multiple steps across connected tools, such as finding a record, preparing a response and requesting approval. The more actions it can take, the more carefully permissions, testing and human oversight need to be defined.'],
       ['Can AI use our own documents and CRM information?', 'It can, where access and data handling are appropriate. We can assess retrieval from approved sources or controlled tool connections. The design defines which information the assistant can access, how answers reference it and what happens when the information is missing or uncertain.'],
       ['How do you reduce incorrect or unsafe AI responses?', 'We use task boundaries, approved sources, testing, monitoring and appropriate human review. Important actions can require approval, and uncertain cases can be handed to a person. These controls reduce risk; they do not make model outputs infallible.'],
-      ['How much does an AI integration cost to run?', 'Running costs can include model usage, hosting, automation software, monitoring and ongoing support. We estimate these against expected usage and agree limits where supported. Implementation is scoped separately, with qualifying projects starting at R50,000.'],
+      ['How much does an AI integration cost to run?', 'Running costs can include model usage, hosting, automation software, monitoring and ongoing support. We estimate these against expected usage and agree limits where supported. Implementation is scoped separately, with qualifying projects starting at R29,990.'],
     ],
     caseEyebrow: 'PORTFOLIO', caseTitle: 'Work and ideas',
     closing: { title: 'Choose one workflow\nworth proving.', lead: 'Describe the task, its volume, the systems involved and how your team currently checks the result. Do not send confidential records through the enquiry form.' },
@@ -333,7 +333,7 @@ const services = [
     crumb: 'HOME  /  SERVICES  /  06 — DYNAMIC QR EXPERIENCES', h1: 'Make every scan\nlead somewhere useful.',
     lead: 'Connect a physical touchpoint to a useful digital action. We combine dynamic destinations, mobile experiences and relevant integrations so a scan can lead to an enquiry, booking, product task or service request.',
     primary: L('Plan a connected QR journey', LINKS.contact), secondary: L('Explore integration', LINKS.systems),
-    note: 'Delivered within qualifying projects from R50,000 or an agreed partnership workstream.',
+    note: 'Delivered within qualifying projects from R29,990 or an agreed partnership workstream.',
     priority: ['Plan what happens\nafter the scan.', 'A QR code is the entry point. The value comes from the experience that follows, the information it captures appropriately and the workflow it connects to. Start with the action you want the customer or team member to complete.'],
     capTitle: 'Connect the touchpoint to the task.',
     caps: [
@@ -355,7 +355,7 @@ const services = [
     scope: { title: 'Control and continuity are part of the scope.', body: 'Document ownership of the domain, redirect mappings, artwork and data. A client-owned subdomain is preferred where feasible. Hosting, platform subscriptions and the arrangement after the engagement ends are agreed explicitly.' },
     measure: { title: 'Measure the action after the scan.', kpis: ['Scans by placement', 'Completed bookings or valid enquiries', 'Journey completion and service outcomes'],
       detail: 'Review scans alongside valid enquiries, completed bookings, registrations or service requests. A scan does not identify a person; connecting customer details requires an appropriate capture journey and data-handling design.' },
-    engagement: { intro: 'Dynamic QR is part of qualifying projects from R50,000 or an agreed partnership workstream. The scope includes the destination and the relevant system connections.', value: 'From R9,990', style: 'solid' },
+    engagement: { intro: 'Dynamic QR is part of qualifying projects from R29,990 or an agreed partnership workstream. The scope includes the destination and the relevant system connections.', value: 'From R29,990', style: 'solid' },
     faqs: [
       ['Can an existing printed QR code become dynamic?', 'Only if its encoded destination is under suitable control. We inspect the existing destination before recommending reuse or reprinting.'],
       ['What happens when our agreement ends?', 'The agreement defines ongoing hosting, subscriptions, redirect ownership and any handover. Continued operation is not sold as a lifetime guarantee.'],

@@ -1,5 +1,6 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import Link from 'next/link';
 import { Lines } from './Text';
 
 
@@ -31,7 +32,7 @@ const FORMS = {
       { name: 'area', label: 'Area to improve', type: 'select', required: true, options: ['Strategy, UX & Conversion', 'Websites & Digital Products', 'Systems Integration & Automation', 'AI Integration', 'Growth Marketing & CRO', 'Dynamic QR Experiences', 'Not sure'], placeholder: 'Select a service area' },
       { name: 'challenge', label: 'What is holding you back?', type: 'textarea', required: true, full: true, placeholder: 'Tell us about the challenge, who it affects and the outcome you want.', help: 'Please leave out passwords and sensitive customer data.' },
       { name: 'platforms', label: 'Current platforms', placeholder: 'Website, CRM, booking or ERP tools' },
-      { name: 'budget', label: 'Potential project budget', type: 'select', options: ['R50,000 – R100,000', 'R100,000 – R250,000', 'R250,000+', 'Not sure yet'], placeholder: 'Choose a range (optional)', help: 'Paid projects start at R50,000.' },
+      { name: 'budget', label: 'Potential project budget', type: 'select', options: ['R29,990 – R100,000', 'R100,000 – R250,000', 'R250,000+', 'Not sure yet'], placeholder: 'Choose a range (optional)', help: 'Paid projects start at R29,990.' },
     ] },
     { tab: 'Contact', title: 'Contact Information', helper: 'Who should we speak to about the findings?', fields: [
       { name: 'name', label: 'Full name', required: true, autoComplete: 'name', placeholder: 'Your first and last name' },
@@ -49,10 +50,15 @@ const FORMS = {
   ]],
 };
 
+function PrivacyText({ text }) {
+  const parts = String(text).split(/(Privacy Notice)/);
+  return parts.map((t, i) => (t === 'Privacy Notice' ? <Link key={i} href="/privacy" target="_blank" rel="noopener">Privacy Notice</Link> : t));
+}
+
 function Field({ f, form, values, setValues }) {
   const id = `${form}-${f.name}`;
   const v = values[f.name] ?? (f.type === 'checkbox' ? false : '');
-  const set = (val) => setValues((p) => ({ ...p, [f.name]: val }));
+  const set = (val) => setValues((p) => ({ ...p, [f.name]: f.type === 'url' ? String(val).replace(/^(\s*https?:\/\/)+(?=\s*https?:\/\/)/i, '') : val }));
   const common = { id, name: f.name, required: f.required, autoComplete: f.autoComplete, 'aria-describedby': f.help ? `${id}-h` : undefined };
   if (f.type === 'checkbox') {
     return (
@@ -79,7 +85,8 @@ export default function CmsForm({ form = 'contact', submitLabel, privacy, succes
   const steps = FORMS[form] || FORMS.contact;
   const multi = steps.length > 1;
   const [step, setStep] = useState(0);
-  const [values, setValues] = useState({});
+  const [values, setValues] = useState(form === 'audit' ? { website: 'https://' } : {});
+  const closeRef = useRef(null);
   const [state, setState] = useState({ status: 'idle', error: '' });
   const cur = multi ? steps[step] : { fields: steps[0] };
   const last = step === steps.length - 1;
@@ -95,20 +102,47 @@ export default function CmsForm({ form = 'contact', submitLabel, privacy, succes
       const json = await res.json().catch(() => ({}));
       if (!res.ok) throw new Error(json.error || 'Something went wrong. Please try again.');
       setState({ status: 'done', error: '' });
+      try {
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({ event: 'form_submit_success', form_type: form === 'audit' ? 'free_audit' : form, form_name: form === 'audit' ? 'Free Audit' : form === 'contact' ? 'Contact' : 'Newsletter' });
+      } catch (_) { /* analytics must never block the form */ }
     } catch (err) {
       setState({ status: 'idle', error: err.message });
     }
   }
 
-  if (state.status === 'done') {
-    const [head, ...rest] = (success || 'Thanks for the context.\nWe’ll review your requirements and contact you about a suitable next step.').split('\n');
-    return (
-      <div className="form-msg" role="status" style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-        <p className="label">Request received</p><p className="h3">{head}</p>{rest.length > 0 && <p className="body"><Lines text={rest.join('\n')} /></p>}
-      </div>
-    );
+  useEffect(() => {
+    if (state.status !== 'done') return undefined;
+    closeRef.current?.focus();
+    const onKey = (e) => { if (e.key === 'Escape') closeModal(); };
+    document.addEventListener('keydown', onKey);
+    return () => document.removeEventListener('keydown', onKey);
+  }, [state.status]);
+
+  function closeModal() {
+    setState({ status: 'idle', error: '' });
+    setValues(form === 'audit' ? { website: 'https://' } : {});
+    setStep(0);
   }
+
+  const done = state.status === 'done';
+  const defaultMsg = form === 'audit'
+    ? 'Thanks, your audit request is in.\nWe’ll review your website and contact you about the findings.'
+    : 'Thanks for the context.\nWe’ll review your requirements and contact you about a suitable next step.';
+  const [head, ...rest] = (success || defaultMsg).split('\n');
   return (
+    <>
+    {done && (
+      <div className="modal-backdrop" role="presentation" onClick={closeModal}>
+        <div className="modal-card" role="dialog" aria-modal="true" aria-labelledby={`${form}-modal-title`} onClick={(e) => e.stopPropagation()}>
+          <button ref={closeRef} type="button" className="modal-close" aria-label="Close" onClick={closeModal}>×</button>
+          <p className="label">{form === 'audit' ? 'Audit request received' : 'Request received'}</p>
+          <p className="h3" id={`${form}-modal-title`}>{head}</p>
+          {rest.length > 0 && <p className="body"><Lines text={rest.join('\n')} /></p>}
+          <button type="button" className="btn btn-primary" onClick={closeModal}>Close</button>
+        </div>
+      </div>
+    )}
     <form className="form" onSubmit={onSubmit}>
       {multi && (
         <>
@@ -118,7 +152,7 @@ export default function CmsForm({ form = 'contact', submitLabel, privacy, succes
       )}
       <div className="form-grid">{cur.fields.map((f) => <Field key={f.name} f={f} form={form} values={values} setValues={setValues} />)}</div>
       <input type="text" name="company_website" tabIndex={-1} autoComplete="off" aria-hidden style={{ position: 'absolute', left: '-9999px' }} />
-      {last && privacy && <p className="small">{privacy}</p>}
+      {last && privacy && <p className="small"><PrivacyText text={privacy} /></p>}
       {state.error && <p className="form-msg err" role="alert">{state.error}</p>}
       <div className={multi ? 'form-actions multi' : 'form-actions'}>
         {multi && <span className="small form-step-count">Step {step + 1} of {steps.length}</span>}
@@ -128,5 +162,6 @@ export default function CmsForm({ form = 'contact', submitLabel, privacy, succes
         </button>
       </div>
     </form>
+    </>
   );
 }

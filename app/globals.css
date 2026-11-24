@@ -53,7 +53,9 @@ a { color: inherit; }
 .btn-row { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
 
 /* Header (BWD / Desktop navigation) */
-.header-wrap { padding: 32px var(--gutter) 0; max-width: 1440px; margin: 0 auto; position: relative; z-index: 20; }
+.header-wrap { padding: 32px var(--gutter) 16px; max-width: 1440px; margin: 0 auto; position: sticky; top: -16px; z-index: 40; }
+.header-wrap::before { content: ''; position: absolute; top: 0; bottom: 0; left: calc(50% - 50vw); right: calc(50% - 50vw); background: var(--bg); z-index: -1; }
+html, body { overflow-x: clip; }
 .nav { background: var(--panel); border: 1px solid var(--border); border-radius: 999px; height: 90px; display: flex; align-items: center;
   gap: 40px; padding: 16px 16px 16px 40px; }
 .nav-logo { width: auto; height: 55px; flex: none; display: block; }
@@ -162,7 +164,7 @@ a { color: inherit; }
 
 /* Footer (BWD / Desktop footer) */
 .footer { padding: 40px var(--gutter) 32px; max-width: 1440px; margin: 0 auto; display: flex; flex-direction: column; gap: 40px; }
-.footer-cols { display: grid; grid-template-columns: 360px 380px 224px 172px; gap: 48px; }
+.footer-cols { display: grid; grid-template-columns: minmax(0, 300px) repeat(4, minmax(0, 1fr)); gap: 40px; }
 .footer h2 { font: 600 14px/20px var(--body); color: #56ffb9; margin: 0 0 12px; text-transform: uppercase; }
 .footer ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; }
 .footer li, .footer a { font: 400 14px/22px var(--body); color: var(--text); text-decoration: none; }
@@ -646,3 +648,18 @@ html, body { overflow-x: clip; }
 .int-card .label:last-child { margin-top: auto; }
 @media (max-width: 860px) { .filter-tab { width: auto; height: auto; } .int-card { min-height: 0; } }
 .section:has(.cards-compact) .lead { font-size: 18px; line-height: 28px; }
+
+
+/* Mega menu: services grid + industries, close control */
+.mega { display: flex; flex-direction: column; gap: 24px; }
+.mega-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.mega-close { position: absolute; top: 12px; right: 16px; width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--border); background: var(--raised); color: var(--text); font-size: 22px; line-height: 1; cursor: pointer; }
+.mega-industries ul { list-style: none; margin: 12px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 12px 24px; }
+.mega-industries a { display: inline; padding: 0; background: none; border-radius: 0; font: 600 16px/24px var(--body); color: var(--text); }
+.mega-industries a:hover { outline: 0; color: var(--accent); }
+@media (max-width: 900px) { .mega-grid { grid-template-columns: 1fr; } }
+
+/* Success modal (Contact and Free Audit) */
+.modal-backdrop { position: fixed; inset: 0; z-index: 100; background: #0c0d1a; display: flex; align-items: center; justify-content: center; padding: 24px; }
+.modal-card { position: relative; width: 100%; max-width: 560px; background: var(--panel); border: 1px solid var(--border); border-radius: var(--r32); padding: 48px 40px 40px; display: flex; flex-direction: column; gap: 16px; align-items: flex-start; }
+.modal-close { position: absolute; top: 16px; right: 16px; width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--border); background: var(--raised); color: var(--text); font-size: 24px; line-height: 1; cursor: pointer; }

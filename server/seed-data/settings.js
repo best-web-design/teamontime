@@ -8,6 +8,14 @@ const services = [
   ['06', 'Dynamic QR Experiences', 'services/dynamic-qr-experiences'],
 ];
 
+const INDUSTRIES = [
+  ['Luxury Travel & Accommodation', '/industries/luxury-travel-accommodation'],
+  ['Luxury Retail & eCommerce', '/industries/luxury-retail-ecommerce'],
+  ['Beauty, Wellness & Medspa', '/industries/beauty-wellness-medspa'],
+  ['Medical & Healthcare', '/industries/medical-healthcare'],
+  ['B2B Services & SaaS', '/industries/b2b-services-saas'],
+];
+
 module.exports = {
   siteName: 'Best Web Design',
   siteUrl: 'https://bestwebdesign.co.za',
@@ -42,11 +50,13 @@ module.exports = {
       { label: 'Free Audit', href: '/free-audit', style: 'accent' },
     ],
   },
+  megaIndustries: INDUSTRIES.map(([label, href]) => ({ label, href })),
   mega: services.map(([n, title, href]) => ({ kicker: `${n} / SERVICE`, title, href: `/${href}` })),
   footer: {
     tagline: 'Connected digital delivery\nfor established businesses.',
     columns: [
       { title: 'Services', links: services.map(([, label, href]) => ({ label, href: `/${href}` })) },
+      { title: 'Industries', links: INDUSTRIES.map(([label, href]) => ({ label, href })) },
       { title: 'Work with us', links: [
         { label: 'Scoped projects', href: '/scoped-projects' },
         { label: '12-month partnerships', href: '/digital-growth-partnerships' },

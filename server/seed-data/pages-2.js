@@ -4,12 +4,12 @@ const arrows = (lines) => lines.join('\n');
 
 const scoped = {
   slug: 'scoped-projects', title: 'Scoped Projects', template: 'engagement', order: 20,
-  seo: seo('Scoped Digital Projects from R50,000 | Best Web Design', 'Clear scope, prioritised delivery. Requirements, deliverables, milestones and acceptance criteria agreed before website, integration or AI projects begin.'),
+  seo: seo('Scoped Digital Projects from R29,990 | Best Web Design', 'Clear scope, prioritised delivery. Requirements, deliverables, milestones and acceptance criteria agreed before website, integration or AI projects begin.'),
   sections: [
     hero('HOME  /  HOW WE WORK  /  08 — SCOPED PROJECTS', 'Clear scope.\nPrioritised delivery.',
       'Bring us the outcome you need to achieve. We work through the requirements, select the right mix of capabilities and agree the deliverables, milestones and acceptance criteria before delivery begins.',
       L('Send a project brief', LINKS.contact), L('Compare with a partnership', LINKS.howWeWork),
-      'Projects start at R50,000. The final investment is based on the agreed scope and delivery requirements.'),
+      'Projects start at R29,990. The final investment is based on the agreed scope and delivery requirements.'),
     s('split', { eyebrow: 'A DEFINED CHANGE', title: 'A clear outcome.\nA shared finish line.', body: 'A project suits a website build, a priority journey improvement, a system connection or a bounded AI pilot. You need a decision-maker, access to the relevant teams and a budget matched to the outcome.' }),
     cards('CLARITY BEFORE DELIVERY', 'Agree the work\nbefore we begin.', [
       ['01 / REQUIREMENTS', 'Requirements and priorities', 'Identify the users, business rules, required functionality and what must be included in the first release.'],
@@ -33,9 +33,9 @@ const scoped = {
     ], { style: 'band', image: '/assets/figma/integration-bg.jpg', noteLabel: 'APPROVE THE SCOPE BEFORE DELIVERY STARTS',
       note: 'The requirements, quote, review responsibilities and delivery agreement establish the shared plan. Where paid discovery is needed, its scope and fee are agreed before it begins.' }),
     s('panels', { list: 'muted', items: [
-      { eyebrow: 'PROJECT INVESTMENT', title: 'From R50,000', body: 'A minimum project investment, with the final fee shaped by the work required.',
+      { eyebrow: 'PROJECT INVESTMENT', title: 'From R29,990', body: 'A minimum project investment, with the final fee shaped by the work required.',
         bullets: arrows(['Priority journeys and functionality', 'Content, migration and system connections', 'Testing, launch and handover requirements']),
-        note: 'Discovery fees, payment milestones, licences, hosting and applicable VAT treatment are set out in the proposal. R50,000 is not a fixed price for every build.' },
+        note: 'Discovery fees, payment milestones, licences, hosting and applicable VAT treatment are set out in the proposal. R29,990 is not a fixed price for every build.' },
       { eyebrow: 'YOUR AGREED SCOPE', title: 'Know what you\nare committing to.',
         bullets: arrows(['Deliverables, priorities and exclusions', 'Milestones, dependencies and review points', 'Acceptance criteria and sign-off responsibilities', 'Ownership, handover and agreed support']) },
     ] }),
@@ -49,7 +49,7 @@ const scoped = {
       { eyebrow: '02 / WHAT THE BUSINESS WILL LEARN', size: 'h3', title: 'Review the outcome.', body: 'Where included in scope, review qualified enquiries, completed orders or handling time after launch. Agree the baseline, measurement period and reporting owner.' },
     ] }),
     faq('BEFORE WE BEGIN', 'A few useful answers.', [
-      ['What is the minimum project investment?', 'Projects start at R50,000. We confirm the final scope, investment and applicable VAT treatment in the proposal.'],
+      ['What is the minimum project investment?', 'Projects start at R29,990. We confirm the final scope, investment and applicable VAT treatment in the proposal.'],
       ['Can you quote from a short brief?', 'We can assess fit and outline the next step. A reliable delivery quote requires enough detail about functionality, integrations, content and constraints.'],
       ['What if the requirements are not yet clear?', 'We agree the discovery needed to define them. Any paid discovery is explained before commitment and remains subject to the project qualification policy.'],
       ['What will we own?', 'The agreement defines ownership and handover for deliverables, accounts and data, alongside any third-party software or licence conditions.'],
@@ -60,7 +60,7 @@ const scoped = {
     ]),
     cta('LET’S DEFINE YOUR NEXT MOVE', 'Give us the goal.\nWe’ll define the scope.',
       'Share the required outcome, current platform, key systems, available budget and target timing. We will review the brief before proposing the next step.',
-      L('Send a project brief', LINKS.contact), 'Bring the outcome, current platform, key systems, budget and target timing. Projects from R50,000.'),
+      L('Send a project brief', LINKS.contact), 'Bring the outcome, current platform, key systems, budget and target timing. Projects from R29,990.'),
   ],
 };
 
@@ -145,12 +145,12 @@ const partnership = {
 
 const howWeWork = {
   slug: 'how-we-work', title: 'How we work', template: 'engagement', order: 22,
-  seo: seo('How We Work: Projects & Partnerships | Best Web Design', 'Two ways to work, one connected approach. Compare scoped projects from R50,000 with 12-month digital growth partnerships.'),
+  seo: seo('How We Work: Projects & Partnerships | Best Web Design', 'Two ways to work, one connected approach. Compare scoped projects from R29,990 with 12-month digital growth partnerships.'),
   sections: [
     hero('HOME  /  HOW WE WORK', 'Two ways to work.\nOne connected approach.',
       'Choose a defined project or a continuing partnership. Both start with your business priority and bring together the capabilities needed to move it forward.',
       L('Explore scoped projects', LINKS.projects), L('Explore partnerships', LINKS.partnership)),
-    engagement('', 'From R50,000', { style: 'flat',
+    engagement('', 'From R29,990', { style: 'flat',
       eyebrow: 'START WITH THE KIND OF CHANGE', title: 'A clear finish line.\nOr a continuing rhythm.', k1: '01 / SCOPED PROJECTS', k2: '02 / DIGITAL GROWTH PARTNERSHIPS',
       b1: 'For a defined build or improvement. Agree requirements, priorities, deliverables and acceptance criteria before delivery starts.',
       n1: 'Final investment, timing and VAT treatment follow the agreed scope.', c1: 'Explore scoped projects',
@@ -162,7 +162,7 @@ const howWeWork = {
         'Best for | A defined change and usable deliverables. | Ongoing improvement with an accountable internal owner.',
         'Planning | Agreed scope, milestones and acceptance criteria. | A 90-day opening rollout, then quarterly priorities.',
         'Commitment | Delivery term and payment milestones set in the agreement. | A 12-month agreement with defined capacity and review cadence.',
-        'Investment | Projects from R50,000; final fee follows the scope. | Monthly fee based on workstreams, capacity and complexity.',
+        'Investment | Projects from R29,990; final fee follows the scope. | Monthly fee based on workstreams, capacity and complexity.',
         'Success | Test the deliverables; scope post-launch measurement where required. | Review delivery and agreed KPIs against a defined baseline.',
       ].join('\n') }),
     steps3('THE WORK STILL CONNECTS', 'Your priority determines\nthe service mix.', [
@@ -200,7 +200,7 @@ const news = {
       ['Are the case studies on this page verified client results?', 'Previews labelled illustrative demonstrate the intended content and layout, not verified client performance. Published client stories should identify the scope, starting position and evidence behind any approved outcome claims.'],
       ['How should I assess an agency case study?', 'Look for a clear problem, an explained scope, a credible baseline and outcomes over a stated period. Ask what other changes influenced performance and who can verify the result. A percentage without context is not enough to judge whether the work fits your needs.'],
       ['Which AI and marketing trends deserve attention first?', 'Prioritise a trend when it addresses a real customer or operational problem, has a clear owner and can be measured. Check the cost, data requirements and implementation effort. A new tool is useful when it improves the business workflow you actually need.'],
-      ['How do I turn an insight into a scoped project?', 'Define the outcome you want, the current constraint and the systems involved. BWD can assess the priority and the skills required, then agree scope and acceptance criteria. Qualifying projects start at R50,000.'],
+      ['How do I turn an insight into a scoped project?', 'Define the outcome you want, the current constraint and the systems involved. BWD can assess the priority and the skills required, then agree scope and acceptance criteria. Qualifying projects start at R29,990.'],
       ['Can I receive new case studies and trend articles by email?', 'Use the newsletter sign-up on this page to request updates. Subscription preferences and unsubscribe options should be available in the emails. An audit or project enquiry does not automatically subscribe you to marketing updates.'],
       ['Can BWD help us apply these ideas to our existing systems?', 'Yes. We begin with the platforms, customer journeys and team workflows you already have. The appropriate project or partnership brings together the design, development, integration and growth work needed for your priority.'],
     ]),
@@ -227,7 +227,7 @@ const integrations = {
     hero('INTEGRATIONS / CONNECTED DIGITAL DELIVERY', 'Connected tools.\nClearer outcomes.',
       'Connect the tools your team relies on to create better customer journeys, reduce manual work and make performance easier to measure.',
       L('Explore integrations', '#catalogue'), L('Scope a project', LINKS.contact),
-      'For established teams  ·  Projects from R50,000  ·  12-month partnerships with focused 90-day rollouts'),
+      'For established teams  ·  Projects from R29,990  ·  12-month partnerships with focused 90-day rollouts'),
     s('cards', { eyebrow: 'THE BUSINESS PRIORITY', title: 'One journey. The right mix of skills.', columns: '4', style: 'compact',
       intro: 'A booking, enquiry or order rarely improves through one discipline alone. We connect the experience, the technology, the data and the follow-up around an agreed business priority.',
       items: [['01', 'Design', 'Make the journey clear.'], ['02', 'Development', 'Build the experience.'], ['03', 'Integration', 'Connect data and actions.'], ['04', 'Growth Marketing', 'Measure and improve.']]
@@ -276,7 +276,7 @@ const integrations = {
       ['02 / DELIVER', 'Build and validate', 'Connect the right tools. Test the customer experience, field mapping, failure paths and permissions before release.'],
       ['03 / IMPROVE', 'Measure and maintain', 'Monitor the agreed KPIs and connection health. Resolve exceptions, document ownership and prioritise the next improvement.'],
     ], { intro: 'A connection needs a clear owner, reliable data and a way to see whether it is doing its job.' }),
-    engagement('Choose the engagement that matches your priorities, internal ownership and pace of improvement.', 'From R50,000', {
+    engagement('Choose the engagement that matches your priorities, internal ownership and pace of improvement.', 'From R29,990', {
       eyebrow: 'TWO WAYS TO WORK TOGETHER', title: 'A defined project.\nOr an ongoing growth partnership.', k1: '01 / SCOPED PROJECTS', k2: '02 / DIGITAL GROWTH PARTNERSHIPS',
       b1: 'For a defined integration priority. We scope and prioritise the work around your requirements, dependencies and acceptance criteria.',
       n1: 'A purposeful mix of design, development, integration and measurement.',
@@ -291,7 +291,7 @@ const integrations = {
       ['What happens after the integration goes live?', 'We define monitoring, documentation, exception handling and ownership as part of the scope. Ongoing support and optimisation can be agreed through a growth partnership or a separately scoped support arrangement.'],
       ['Which integrations matter most for an established business?', 'Start with the handovers most closely linked to your priority: enquiry to CRM, order to fulfilment, booking to confirmation, or campaign to reporting. We assess the cost of the current gap and the reliability of the available data before recommending a connection.'],
       ['Can you connect South African payment and delivery providers?', 'We can assess supported providers against your ecommerce platform and operational requirements. Availability depends on each provider\'s APIs, account eligibility, licences and supported regions. The catalogue gives examples; discovery confirms the exact combination and any third-party costs.'],
-      ['How much should we budget for an integration project?', 'Qualifying projects start at R50,000. Complexity depends on the number of systems, data rules, security, migration, testing and support requirements. The proposal separates implementation from licences, transaction fees, hosting and ongoing monitoring where these apply.'],
+      ['How much should we budget for an integration project?', 'Qualifying projects start at R29,990. Complexity depends on the number of systems, data rules, security, migration, testing and support requirements. The proposal separates implementation from licences, transaction fees, hosting and ongoing monitoring where these apply.'],
     ]),
     cta('LET’S CONNECT THE RIGHT THINGS', 'Start with the journey\nyou want to improve.',
       'Bring your current tools, the point of friction and the outcome that matters. We will help define the priorities, dependencies and right mix of skills.',
@@ -307,7 +307,7 @@ const contact = {
     s('form', { form: 'contact', eyebrow: 'START WITH THE BUSINESS PRIORITY', title: 'A useful first conversation.',
       intro: 'Share the challenge, the systems involved and the result you want. Your team’s context helps us ask better questions.',
       items: [
-        { title: 'Scoped projects', body: 'A defined outcome, prioritised requirements and a clear finish line. Projects from R50,000.' },
+        { title: 'Scoped projects', body: 'A defined outcome, prioritised requirements and a clear finish line. Projects from R29,990.' },
         { title: 'Digital Growth Partnerships', body: '12-month engagements with focused 90-day rollout plans. Best suited to established teams with a marketing owner.' },
       ],
       showContact: true, support: 'Already a client? Use the support route and response commitments in your agreement.',
@@ -322,7 +322,7 @@ const contact = {
     faq('YOUR QUESTIONS, ANSWERED', 'Before you get in touch.', [
       ['How do we start a conversation with BWD?', 'Tell us about your business, the main challenge and the outcome you want. The contact form helps route the enquiry to the right discussion. If you would like an initial view of your website before defining scope, use the Free Audit option.'],
       ['What information should we include in a project enquiry?', 'Share your website, business context, key requirements, systems involved and any target dates. A budget range and decision-maker also help us assess fit. Please avoid sending passwords, payment details or sensitive customer information through the enquiry form.'],
-      ['What is the minimum budget for a project?', 'Qualifying projects start at R50,000. The final scope and price depend on the work, integrations and delivery requirements. Your proposal confirms the investment, third-party costs and applicable VAT treatment before commitment.'],
+      ['What is the minimum budget for a project?', 'Qualifying projects start at R29,990. The final scope and price depend on the work, integrations and delivery requirements. Your proposal confirms the investment, third-party costs and applicable VAT treatment before commitment.'],
       ['Can we contact you about ongoing digital growth support?', 'Yes. Digital Growth Partnerships run for 12 months, with focused 90-day rollout plans. They are best suited to established businesses with teams of 10 or more and dedicated marketing ownership. We first discuss your goals, readiness and available capacity.'],
       ['Do you work with businesses outside Johannesburg?', 'We can assess projects for businesses across South Africa. The enquiry helps establish location, stakeholder availability and any on-site requirements. Meeting arrangements and travel, where needed, are agreed as part of the engagement.'],
       ['Where should an existing client request support?', 'Use the support contact and escalation route in your agreement. The WhatsApp support option provides another way to start a conversation once connected to BWD\'s support number. Support availability and response commitments depend on the agreed service.'],
@@ -351,7 +351,7 @@ const audit = {
     faq('YOUR QUESTIONS, ANSWERED', 'About your Free Audit.', [
       ['What does the Free Audit include?', 'The Free Audit is an initial review of your website and the business priority you share. It looks for useful opportunities across experience, conversion, measurement and connected workflows. The next conversation clarifies the findings and whether a more detailed scoped assessment would help.'],
       ['Is the Free Audit a full technical or security audit?', 'No. It is a directional starting point based on the information available. A complete UX research programme, security assessment, accessibility certification or technical discovery requires its own agreed scope. Any paid work is explained before you commit.'],
-      ['Who is the Free Audit intended for?', 'It is intended for established businesses with an existing website and a clear goal to improve. Share your team size and marketing ownership so we can assess fit. Paid projects start at R50,000; ongoing partnerships require the capacity to support implementation and decisions.'],
+      ['Who is the Free Audit intended for?', 'It is intended for established businesses with an existing website and a clear goal to improve. Share your team size and marketing ownership so we can assess fit. Paid projects start at R29,990; ongoing partnerships require the capacity to support implementation and decisions.'],
       ['What information do I need to complete the form?', 'Provide your business name, website, industry, team context, primary goal and a short description of the challenge. Then add your contact details so we can respond. Current platform names and a potential budget range help focus the review but do not replace discovery.'],
       ['Do you need passwords or access to our systems?', 'Do not send passwords or sensitive customer data in this form. The initial review uses your public website and the context you provide. If deeper access is later required, we agree the purpose, permissions and a suitable way to share access separately.'],
       ['Does requesting an audit commit us to a project or retainer?', 'No. The initial review carries no obligation to start paid work. If there is a suitable next step, we discuss a scoped project or a 12-month growth partnership and provide a separate proposal before you decide.'],
