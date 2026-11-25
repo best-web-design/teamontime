@@ -4,6 +4,7 @@ import CmsForm from './CmsForm';
 import NewsList from './NewsList';
 import Integrations from './Integrations';
 import Parallax from './Parallax';
+import AutoStrip from './AutoStrip';
 import { getPosts, getSettings } from '@/lib/api';
 
 const Head = ({ d }) => (
@@ -192,7 +193,7 @@ const R = {
     return (
       <div className="tiles-section">
         <section className="section"><Head d={d} /></section>
-        {row.length > 0 && <div className="marquee folio-strip" aria-label={d.title || 'Portfolio'}><div className="marquee-track">{row}{row.map((r, i) => <div key={`d${i}`} aria-hidden>{r}</div>)}</div></div>}
+        {row.length > 0 && <AutoStrip className="folio-strip" label={d.title || 'Portfolio'} speed={50}>{row}</AutoStrip>}
       </div>
     );
   })() : (

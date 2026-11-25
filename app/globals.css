@@ -710,3 +710,10 @@ a.card, a.news-card, .card:has(> .card-link), .step:has(> .card-link), .int-card
 .btn-accent:hover { background: #86ffd0; }
 .btn { transition: background .15s, border-color .15s; }
 .journey.glass { -webkit-backdrop-filter: none; backdrop-filter: none; }
+
+/* Portfolio strip: auto-scroll + manual drag/swipe (components/AutoStrip.js) */
+.auto-strip { overflow-x: auto; scrollbar-width: none; cursor: grab; -webkit-overflow-scrolling: touch; }
+.auto-strip::-webkit-scrollbar { display: none; }
+.auto-strip.dragging { cursor: grabbing; user-select: none; }
+.auto-strip-track { display: flex; gap: 20px; width: max-content; padding-right: 20px; }
+.auto-strip .folio img { pointer-events: none; -webkit-user-drag: none; }
