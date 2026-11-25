@@ -54,7 +54,6 @@ function service(o) {
       engagement(o.engagement.intro, o.engagement.value, o.engagement.style ? { style: o.engagement.style } : {}),
       faq('BEFORE WE BEGIN', 'A few useful answers.', o.faqs),
       cta('LET’S DEFINE YOUR NEXT MOVE', o.closing.title, o.closing.lead, o.primary, o.closing.note || o.note),
-      caseStudies(o.caseEyebrow || 'CONNECTED EXPERIENCES', o.caseTitle || 'What this can\nlook like in practice.'),
     ],
   };
 }
