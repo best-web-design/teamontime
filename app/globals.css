@@ -703,3 +703,10 @@ a.card, a.news-card, .card:has(> .card-link), .step:has(> .card-link), .int-card
 .journey-art { width: 400px !important; right: -40px !important; }
 .journey-bar { position: absolute; top: 150px; right: -60px; width: 220px; height: 14px; border-radius: 8px; background: var(--label); rotate: -4deg; z-index: 0; pointer-events: none; }
 @media (max-width: 1100px) { .journey-art { width: 280px !important; } .journey-bar { display: none; } }
+
+/* ===== Design QA round 3: Figma button hover states, sharper parallax glass ===== */
+.btn-primary:hover { background: #7472ff; }
+.btn-outline:hover { background: var(--panel); border-color: var(--primary); }
+.btn-accent:hover { background: #86ffd0; }
+.btn { transition: background .15s, border-color .15s; }
+.journey.glass { -webkit-backdrop-filter: none; backdrop-filter: none; }
