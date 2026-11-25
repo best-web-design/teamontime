@@ -43,8 +43,8 @@ function service(o) {
       ...(o.before || []),
       cards('THE RIGHT MIX OF CAPABILITIES', o.capTitle, o.caps, o.capExtra),
       ...(o.afterCaps || []),
-      s('journey', { eyebrow: 'HOW THE WORK CONNECTS', title: o.journey.title, intro: o.journey.intro,
-        steps: o.journey.steps.map(([kicker, title, body]) => ({ kicker, title, body })), boundary: o.journey.boundary, note: o.journey.note, ...(o.journey.style ? { style: o.journey.style } : {}), ...(o.journey.art ? { art: o.journey.art } : {}) }),
+      ...(o.journey ? [s('journey', { eyebrow: 'HOW THE WORK CONNECTS', title: o.journey.title, intro: o.journey.intro,
+        steps: o.journey.steps.map(([kicker, title, body]) => ({ kicker, title, body })), boundary: o.journey.boundary, note: o.journey.note, ...(o.journey.style ? { style: o.journey.style } : {}), ...(o.journey.art ? { art: o.journey.art } : {}) })] : []),
       steps3('FROM PRIORITY TO IMPLEMENTATION', o.delivery.title, o.delivery.items),
       s('panels', { items: [
         { eyebrow: 'WHAT YOU CAN EXPECT', title: o.scope.title, body: o.scope.body },

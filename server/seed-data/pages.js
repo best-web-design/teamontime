@@ -166,12 +166,6 @@ const services = [
         { image: '/assets/figma/portfolio/07-clevercam.jpg', alt: 'CleverCam security app screens', caption: 'CleverCam' },
         { image: '/assets/figma/portfolio/08-travel-app.jpg', alt: 'Luxury travel app shown on five phones', caption: 'Travel app' },
       ] })],
-    journey: { title: 'From product interest\nto a useful sales conversation.', intro: 'Make the next step easy for the customer, and useful for the team who responds.',
-      steps: [['01 / CUSTOMER', 'Find the right product', 'Clear categories, useful specifications and the information needed to choose.'],
-        ['02 / EXPERIENCE', 'Build a quote request', 'Capture product options, quantities and the context your sales team needs.'],
-        ['03 / OPERATIONS', 'Respond with context', 'Create a CRM record, assign an owner and connect the agreed order workflow.']],
-      boundary: 'ILLUSTRATIVE CATALOGUE JOURNEY  /  Discovery → quote or checkout → connected operations',
-      note: 'A customer compares products, selects the relevant options and requests a quote. Product information and customer requirements reach the right sales owner, with enough context to respond. Design, catalogue structure and integration support the same journey.' },
     delivery: { title: 'Scope first. Build with a shared definition of done.', items: [
       ['01 / DEFINE', 'Define', 'Agree audiences, priority journeys, content, functionality, system connections and release boundaries.'],
       ['02 / DESIGN & DEVELOP', 'Design and develop', 'Work through structure, content, responsive layouts and implementation against the agreed scope.'],
