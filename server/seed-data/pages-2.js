@@ -27,9 +27,9 @@ const scoped = {
       footBody: 'A test customer can find a product, select the required options and submit a quote request. The agreed details reach the correct sales owner and can be followed up.',
       footNote: 'Illustrative scope only. Your proposal defines the actual features, integrations, exclusions and acceptance criteria.' }),
     steps3('FROM BRIEF TO HANDOVER', 'Know what happens next.', [
-      ['01 / DISCOVERY', 'Brief and discovery', 'Review the business need and fit. Where detailed investigation is required, agree the discovery scope and fee before it starts.'],
+      ['01 / DELIVERY', 'Brief and discovery', 'Review the business need and fit. Where detailed investigation is required, agree the discovery scope and fee before it starts.'],
       ['02 / DELIVERY', 'Scope and delivery', 'Approve the requirements, quote and delivery agreement. Progress through design, build and review milestones.'],
-      ['03 / LAUNCH', 'Acceptance and launch', 'Test against the agreed criteria, complete launch requirements and hand over the specified assets and operating information.'],
+      ['03 / DELIVERY', 'Acceptance and launch', 'Test against the agreed criteria, complete launch requirements and hand over the specified assets and operating information.'],
     ], { style: 'band', image: '/assets/figma/integration-bg.jpg', noteLabel: 'APPROVE THE SCOPE BEFORE DELIVERY STARTS',
       note: 'The requirements, quote, review responsibilities and delivery agreement establish the shared plan. Where paid discovery is needed, its scope and fee are agreed before it begins.' }),
     s('panels', { list: 'muted', items: [

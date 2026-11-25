@@ -3,6 +3,7 @@ import Carousel from './Carousel';
 import CmsForm from './CmsForm';
 import NewsList from './NewsList';
 import Integrations from './Integrations';
+import Parallax from './Parallax';
 import { getPosts, getSettings } from '@/lib/api';
 
 const Head = ({ d }) => (
@@ -213,7 +214,7 @@ const R = {
     const glass = d.style === 'glass';
     const inner = (
       <>
-        {d.art && <img className="journey-art" src={d.art} alt="" loading="lazy" />}
+        {d.art && <><span className="journey-bar" aria-hidden /><img className="journey-art" src={d.art} alt="" loading="lazy" /></>}
         <Head d={d} />
         <div className={grid((d.steps || []).length)}>{(d.steps || []).map((it, i) => <Card key={i} it={it} cls={glass ? 'step step-auto' : 'step'} />)}</div>
         {d.boundary && <p className="label" style={{ textTransform: 'none' }}>{d.boundary}</p>}
@@ -437,8 +438,13 @@ const R = {
 };
 
 export default function Sections({ sections = [] }) {
-  return sections.map((s, i) => {
-    const render = R[s.type];
-    return render ? <div key={i} id={s.data?.anchor || undefined} className={s.data?.attach ? 'attach' : undefined}>{render(s.data || {}, { first: i === 0 })}</div> : null;
-  });
+  return (
+    <>
+      <Parallax />
+      {sections.map((s, i) => {
+        const render = R[s.type];
+        return render ? <div key={i} id={s.data?.anchor || undefined} className={s.data?.attach ? 'attach' : undefined}>{render(s.data || {}, { first: i === 0 })}</div> : null;
+      })}
+    </>
+  );
 }

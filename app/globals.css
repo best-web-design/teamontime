@@ -663,3 +663,43 @@ html, body { overflow-x: clip; }
 .modal-backdrop { position: fixed; inset: 0; z-index: 100; background: #0c0d1a; display: flex; align-items: center; justify-content: center; padding: 24px; }
 .modal-card { position: relative; width: 100%; max-width: 560px; background: var(--panel); border: 1px solid var(--border); border-radius: var(--r32); padding: 48px 40px 40px; display: flex; flex-direction: column; gap: 16px; align-items: flex-start; }
 .modal-close { position: absolute; top: 16px; right: 16px; width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--border); background: var(--raised); color: var(--text); font-size: 24px; line-height: 1; cursor: pointer; }
+
+/* ===== Design QA round 1 (Nov 2026) ===== */
+/* Hover: 2px inside stroke on clickable cards (Web changes #1); mega menu keeps its hover fill */
+a.card, a.news-card, .card:has(> .card-link), .step:has(> .card-link), .int-card:has(a) { transition: box-shadow .15s; }
+.news-card:hover, .card:has(> .card-link):hover, a.card:hover { outline: 0; box-shadow: inset 0 0 0 2px var(--primary); }
+.mega a { background: var(--panel); border-radius: var(--r16); }
+.mega a:hover { outline: 0; background: var(--hover); }
+.card.filled { border-radius: var(--r16); min-height: 0; padding: 32px; gap: 16px; }
+.card.filled .h3 { font-size: 22px; line-height: 34px; }
+.card.filled .card-link { color: var(--text); font-size: 14px; line-height: 22px; font-weight: 400; }
+.card.filled .card-link:hover { text-decoration: underline; }
+/* Single-line / two-line copy per Figma */
+.journey-note { max-width: none; font-size: 16px; line-height: 24px; }
+.engage .body { font-size: 16px; line-height: 24px; max-width: 520px; }
+.panel .h2, .nested-card .h3 { font-size: 32px; line-height: 40px; }
+.hero .lead, .cta-panel .lead { text-align: center; margin-inline: auto; max-width: 1100px; }
+.hero.left .lead { text-align: left; margin-inline: 0; }
+.cta-panel.cta-editorial .lead { text-align: left; margin-inline: 0; }
+.plain-step .h3, .step-auto .h3 { font-size: 22px; line-height: 30px; }
+.plain-step .body, .step-auto .body, .glass-note .body { font-size: 16px; line-height: 24px; }
+.hub-cube { width: 190px !important; height: 190px !important; margin: 25px 0 0 25px; }
+.int-card { min-height: 0; gap: 12px; padding: 24px; }
+.int-card .h3 { font-size: 22px; line-height: 30px; }
+.int-card .body { font-size: 16px; line-height: 24px; }
+/* FAQ: whole row toggles (padding on the summary), 72px closed, multi-open kept */
+.faq { padding: 0; }
+.faq summary { padding: 24px; }
+.faq-a { padding: 0 24px 24px; }
+.faq summary:focus-visible { outline-offset: -2px; border-radius: var(--r16); }
+/* Narrow screens: long headings wrap inside their box */
+.h2, .display, .h3 { overflow-wrap: anywhere; min-width: 0; }
+.nested-grid > *, .grid-2 > *, .grid-3 > *, .grid-4 > * { min-width: 0; }
+@media (max-width: 860px) { .panel .h2, .nested-card .h3 { font-size: 24px; line-height: 32px; } .journey-note { font-size: 16px; } }
+/* Floating magnifier (scroll offset set by Parallax) */
+.journey-art { will-change: transform; transform: translate3d(0, var(--py, 0px), 0); }
+.band-photo { background-attachment: fixed; }
+@media (max-width: 860px) { .band-photo { background-attachment: scroll; } }
+.journey-art { width: 400px !important; right: -40px !important; }
+.journey-bar { position: absolute; top: 150px; right: -60px; width: 220px; height: 14px; border-radius: 8px; background: var(--label); rotate: -4deg; z-index: 0; pointer-events: none; }
+@media (max-width: 1100px) { .journey-art { width: 280px !important; } .journey-bar { display: none; } }
