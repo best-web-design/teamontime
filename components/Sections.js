@@ -254,7 +254,7 @@ const R = {
       </section>
     );
     if (!band) return body;
-    return <div className="band-photo band-dark" style={d.image ? { backgroundImage: `linear-gradient(rgba(0,0,0,.62), rgba(0,0,0,.62)), url(${d.image})` } : undefined}>{body}</div>;
+    return <div className="band-photo band-dark" style={d.image ? { backgroundImage: `linear-gradient(rgba(0,0,0,.4), rgba(0,0,0,.4)), url(${d.image})` } : undefined}>{body}</div>;
   },
   panels: (d) => d.style === 'attached' ? (
     <section className="section attached">

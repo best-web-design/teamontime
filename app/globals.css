@@ -717,3 +717,8 @@ a.card, a.news-card, .card:has(> .card-link), .step:has(> .card-link), .int-card
 .auto-strip.dragging { cursor: grabbing; user-select: none; }
 .auto-strip-track { display: flex; gap: 20px; width: max-content; padding-right: 20px; }
 .auto-strip .folio img { pointer-events: none; -webkit-user-drag: none; }
+
+/* ===== Design QA round 5: magnifier + mint bar placement, "Know what happens next" band ===== */
+.journey > .journey-bar { position: absolute; top: 190px; right: -48px; width: 200px; height: 16px; rotate: 0deg; z-index: 0; border-radius: 8px; transform: translate3d(0, var(--py, 0px), 0); }
+.journey > .journey-art { z-index: 1; }
+.band-photo.band-dark { background-attachment: scroll; background-position: center; }

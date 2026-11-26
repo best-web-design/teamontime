@@ -92,6 +92,9 @@ const home = {
       ['Can one team connect our website, CRM and marketing?', 'Yes, when those connections belong in the agreed scope. We map the customer journey and the systems behind it, then combine design, development, integration and growth skills around the outcome. Platform access and feasibility are checked before commitment.'],
       ['How will we know whether the work is performing?', 'We agree the starting position, KPI definitions, data sources and who owns each measure. Depending on the business, useful measures may include qualified enquiries, direct bookings, completed purchases or time saved. Reporting connects delivery to these outcomes and explains what needs attention.'],
     ]),
+    cta('LET’S CONNECT THE RIGHT THINGS', 'Start with the journey\nyou want to improve.',
+      'Bring your current tools, the point of friction and the outcome that matters. We will help define the priorities, dependencies and right mix of skills.',
+      L('Explore scoped projects', LINKS.projects), 'Useful starting points: your website · your CRM or booking tools · your internal owner · the result you want to improve', L('Explore partnerships', LINKS.partnership)),
     cta('LET’S DEFINE YOUR NEXT MOVE', 'What needs to\nwork better?', 'Tell us the business priority. We’ll help shape the right scope.',
       L('Scope a project', LINKS.contact), 'Projects from R29,990  /  12-month partnerships with a focused first 90 days', L('Explore a partnership', LINKS.partnership), { size: 'display' }),
   ],
@@ -99,7 +102,7 @@ const home = {
 
 const services = [
   service({
-    slug: 'services/strategy-ux-conversion', title: 'Strategy, UX & Conversion', order: 10,
+    slug: 'services/strategy-ux-conversion', title: 'Strategy, UX & Conversion', order: 10, caseStudies: true,
     seo: seo('Strategy, UX & Conversion Audits | Best Web Design', 'Find the friction in your customer journey. Evidence-led UX audits and a prioritised delivery plan for enquiries, checkout and bookings. From R29,990.'),
     crumb: 'HOME  /  SERVICES  /  01 — STRATEGY, UX & CONVERSION', h1: 'Find the friction.\nFocus the next move.',
     lead: 'When customers hesitate, abandon a form or struggle to buy, the cause is rarely a single screen.\nWe examine the journey, the supporting evidence and the systems behind it, then turn the findings into a prioritised delivery plan.',
@@ -141,7 +144,7 @@ const services = [
     closing: { title: 'Choose the journey\nworth improving first.', lead: 'Tell us where customers or staff get stuck, what the task is worth to the business and what evidence you already have.' },
   }),
   service({
-    slug: 'services/websites-digital-products', title: 'Websites & Digital Products', order: 11,
+    slug: 'services/websites-digital-products', title: 'Websites & Digital Products', caseStudies: true, order: 11,
     seo: seo('Website Design & Development | Best Web Design', 'Business websites, commerce, portals and digital products built around how you sell, with CRM, payment and stock integrations. Projects from R29,990.'),
     crumb: 'HOME  /  SERVICES  /  02 — WEBSITES & DIGITAL PRODUCTS', h1: 'Build for the way\nyour business sells.',
     lead: 'Your website should help customers make decisions and help your team manage what happens next. We combine experience design, development and the right integrations to create a platform around your requirements.',
@@ -166,6 +169,12 @@ const services = [
         { image: '/assets/figma/portfolio/07-clevercam.jpg', alt: 'CleverCam security app screens', caption: 'CleverCam' },
         { image: '/assets/figma/portfolio/08-travel-app.jpg', alt: 'Luxury travel app shown on five phones', caption: 'Travel app' },
       ] })],
+    journey: { title: 'From product interest\nto a useful sales conversation.', intro: 'Make the next step easy for the customer, and useful for the team who responds.',
+      steps: [['01 / CUSTOMER', 'Find the right product', 'Clear categories, useful specifications and the information needed to choose.'],
+        ['02 / EXPERIENCE', 'Build a quote request', 'Capture product options, quantities and the context your sales team needs.'],
+        ['03 / OPERATIONS', 'Respond with context', 'Create a CRM record, assign an owner and connect the agreed order workflow.']],
+      boundary: 'ILLUSTRATIVE CATALOGUE JOURNEY  /  Discovery → quote or checkout → connected operations',
+      note: 'A customer compares products, selects the relevant options and requests a quote. Product information and customer requirements reach the right sales owner, with enough context to respond. Design, catalogue structure and integration support the same journey.' },
     delivery: { title: 'Scope first. Build with a shared definition of done.', items: [
       ['01 / DEFINE', 'Define', 'Agree audiences, priority journeys, content, functionality, system connections and release boundaries.'],
       ['02 / DESIGN & DEVELOP', 'Design and develop', 'Work through structure, content, responsive layouts and implementation against the agreed scope.'],
@@ -184,7 +193,6 @@ const services = [
       ['Can a website redesign protect our existing search visibility?', 'We plan content, URLs, redirects, metadata and tracking as part of the agreed migration scope. We also check the new site\'s crawlability and key journeys before and after launch. Search performance can fluctuate, so no redesign comes with a ranking guarantee.'],
       ['Can you connect a hotel or lodge website to direct booking?', 'Yes, subject to the booking platform\'s integration options. We can design a clear path from room information and availability to booking and confirmation. Discovery checks the booking engine, mobile experience, payment flow and the measurement available across domains.'],
     ],
-    caseEyebrow: 'PORTFOLIO',
     closing: { title: 'Build the platform\nyour next stage needs.', lead: 'Share your current website, the business priority and the systems it needs to connect with. We will help define the first release.' },
   }),
   service({
